@@ -24,7 +24,9 @@ Studentas ivesk();
 
 int main (){
     vector<Studentas> Grupe;
-    for(int j=0;j<3;j++){
+    int studsk;
+    cout << "Kiek studentu norite ivesti? "; cin >> studsk;
+    for(int j=0;j<studsk;j++){
         cout<<"Iveskite " <<j+1<<" studenta:\n";
         Grupe.push_back(ivesk());
     }
@@ -47,4 +49,5 @@ Studentas ivesk(){
     cout<<"Iveskite egzamina: "; cin>>Laik.egzas;
     Laik.rez=Laik.egzas*0.6+double(sum)/double(Laik.paz.size())*0.4;
     return Laik;
+
     }
