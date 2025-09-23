@@ -75,16 +75,41 @@ int main (){
 
 Studentas ivesk(){
     Studentas Laik;
-    int n,m ;
+    string n,m;
+    int k;
    
     cout<<"Iveskite varda: "; cin>>Laik.vard;
-        cout<<"Iveskite pavarde: "; cin>>Laik.pav;
-        cout<<"Kiek pazymiu turi studentas: "; cin>>n;
-        for (int i=0;i<n;i++) {
-            cout<<"Iveskite " <<i+1 << " paz. is " << n<<" : "; cin>>m;
-            Laik.paz.push_back(m);
+    cout<<"Iveskite pavarde: "; cin>>Laik.pav;
+    cout<<"Kiek pazymiu turi studentas (jei nera aisku, iveskite 'neaisku'): "; cin>>n;
+    if (n == "neaisku") {
+        while (true) { 
+            cout << "Iveskite pazymi, norint baigti pazymiu ivedima, parasykite 'baigti': "; 
+            cin >> m; 
+            if (m == "baigti") break; 
+            int paz = stoi(m); 
+            if (paz < 1 || paz > 10) { 
+                cout << "Pazymys turi buti intervale nuo 1 iki 10. Pabandykite dar karta.\n"; 
+                continue; 
+            } 
+            Laik.paz.push_back(paz); 
+        } 
+    } else {
+        int kiek = stoi(n);
+        if (kiek < 0) {
+            cout << "Studentas negali tureti neigiamo pazymiu skaiciaus. Pabandykite dar karta.\n";
+            return ivesk();
+        }
+        for (int i = 0; i < kiek; i++) {
+            cout << "Iveskite " << i + 1 << " paz. is " << kiek << ": "; cin >> k;
+            if (k < 1 || k > 10) {
+                cout << "Pazymys turi buti intervale nuo 1 iki 10.\n";
+                i--; 
+            } else {
+                Laik.paz.push_back(k);
+            }
+        }
     }
-    
+        
     cout<<"Iveskite egzamina: "; cin>>Laik.egzas;
     
     Laik.rez_vidurkis = Laik.egzas*0.6 + vidurkis(Laik.paz)*0.4;
@@ -117,3 +142,4 @@ float mediana(vector<int> pazymiai) {
     else
         return pazymiai[n/2];
 }
+
