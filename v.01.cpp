@@ -133,6 +133,8 @@ float vidurkis(vector<int> pazymiai) {
 
 
 float mediana(vector<int> pazymiai) {
+        if (pazymiai.empty()) 
+        return 0.0;
     sort(pazymiai.begin(), pazymiai.end());
     int n = pazymiai.size();
 
@@ -142,4 +144,5 @@ float mediana(vector<int> pazymiai) {
     else
         return pazymiai[n/2];
 }
+
 
