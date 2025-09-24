@@ -6,6 +6,7 @@
 #include <cstdlib>   
 #include <ctime> 
 #include <fstream>
+#include <sstream>
 
 using std::cout;
 using std::cin;
@@ -20,6 +21,7 @@ using std::setprecision;
 using std::sort;
 using std::ifstream;
 using std::getline;
+using std::stringstream;
 
 struct Studentas {
     string vard;
@@ -209,15 +211,25 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
     string pirmas;
     getline(is, pirmas);
 
-    string vard, pav;
+    string eilute;
     int nd1, nd2, nd3, nd4, nd5, egz;
 
-    while (is >> vard >> pav >> nd1 >> nd2 >> nd3 >> nd4 >> nd5 >> egz) {
+    while (getline(is, eilute)) {
+        stringstream ss(eilute);
         Studentas Laik;
-        Laik.vard = vard;
-        Laik.pav = pav;
-        Laik.paz = {nd1, nd2, nd3, nd4, nd5};
-        Laik.egzas = egz;
+
+         ss >> Laik.vard >> Laik.pav;
+
+        vector<int> nd_paz;
+        int paz;
+        while (ss >> paz) {
+            nd_paz.push_back(paz);
+        }
+
+        Laik.egzas = nd_paz.back();
+        nd_paz.pop_back();
+
+        Laik.paz = nd_paz;       
 
         Laik.rez_vidurkis = Laik.egzas*0.6 + vidurkis(Laik.paz)*0.4;
         Laik.rez_mediana = Laik.egzas*0.6 + mediana(Laik.paz)*0.4;
@@ -231,5 +243,6 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
         cout << "Failas perskaitytas, bet studentu nerasta." << endl;
     }
 }
+
 
 
