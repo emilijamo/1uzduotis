@@ -66,6 +66,10 @@ int main (){
         cout << "Neteisingas pasirinkimas!\n";
         return 0;
     }
+
+    sort(Grupe.begin(), Grupe.end(), [](Studentas a, Studentas b) {
+    return a.vard < b.vard; 
+    });
     
     cout << "--------------------------------------------------\n";
     cout << left << setw(15) << "Vardas"
@@ -227,4 +231,5 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
         cout << "Failas perskaitytas, bet studentu nerasta." << endl;
     }
 }
+
 
