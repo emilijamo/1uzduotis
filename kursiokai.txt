@@ -1,0 +1,8 @@
+Pavarde		Vardas		ND1	ND2	ND3	ND4	ND5 Egzaminas
+Ona	    	Onaityte	5	9	4	8	7   8
+Jonas		Jonaitis	8	5	9	7	4   10
+Petras		Petraitis	8	9	10	6	7   5
+Emilija		Emilyte		5	8	7	9	10	7
+Tomas		Tomaitis	8	4	9	5	4	9
+Ana	    	Anaityte	4	9	5	7	3   10
+Liudas		Liudaitis	8	7	4	3	10	8
