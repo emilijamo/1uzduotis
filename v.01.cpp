@@ -40,6 +40,7 @@ int main (){
     srand(time(0));
     vector<Studentas> Grupe;
     int studsk;
+    int rez_pasirinkimas;
 
     int pasirinkimas;
     cout << "Kaip norite gauti studentu duomenis?\n";
@@ -53,19 +54,18 @@ int main (){
             cout<<"Iveskite " <<j+1<<" studenta:\n";
             Grupe.push_back(ivesk());
         }
+        cout << "Kaip skaiciuoti galutini bala?\n";
+        cout << "1 - pagal vidurki\n";
+        cout << "2 - pagal mediana\n";
+        cout << "3 - abu\n";
+        cout << "Jusu pasirinkimas: "; cin >> rez_pasirinkimas;           
     } else if (pasirinkimas == 2) {
+        rez_pasirinkimas = 3;
         failo_nuskaitymas("kursiokai.txt", Grupe);
     } else {
         cout << "Neteisingas pasirinkimas!\n";
         return 0;
     }
-    
-    int rez_pasirinkimas;
-    cout << "Kaip skaiciuoti galutini bala?\n";
-    cout << "1 - pagal vidurki\n";
-    cout << "2 - pagal mediana\n";
-    cout << "3 - abu\n";
-    cout << "Jusu pasirinkimas: "; cin >> rez_pasirinkimas;
     
     cout << "--------------------------------------------------\n";
     cout << left << setw(15) << "Vardas"
@@ -224,6 +224,7 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
     is.close();
 
     if (Grupe.empty()) {
-        cout << "Failas perskaitytas, bet studentu nerasta (tikrinkite formatą)." << endl;
+        cout << "Failas perskaitytas, bet studentu nerasta." << endl;
     }
 }
+
