@@ -5,6 +5,7 @@
 #include <algorithm> 
 #include <cstdlib>   
 #include <ctime> 
+#include <fstream>
 
 using std::cout;
 using std::cin;
@@ -17,6 +18,8 @@ using std::right;
 using std::fixed;
 using std::setprecision;
 using std::sort;
+using std::ifstream;
+using std::getline;
 
 struct Studentas {
     string vard;
@@ -31,15 +34,30 @@ Studentas ivesk();
 float vidurkis(vector<int> pazymiai);
 float mediana(vector<int> pazymiai);
 
+void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe);
+
 int main (){
     srand(time(0));
     vector<Studentas> Grupe;
     int studsk;
-    cout << "Kiek studentu norite ivesti? "; cin >> studsk;
-    
-    for(int j=0;j<studsk;j++){
-        cout<<"Iveskite " <<j+1<<" studenta:\n";
-        Grupe.push_back(ivesk());
+
+    int pasirinkimas;
+    cout << "Kaip norite gauti studentu duomenis?\n";
+    cout << "1 - Įvesti patiems arba sugeneruoti\n";
+    cout << "2 - Nuskaityti is failo (kursiokai.txt)\n";
+    cout << "Jusu pasirinkimas: "; cin >> pasirinkimas;
+
+    if (pasirinkimas == 1) {
+        cout << "Kiek studentu norite ivesti? "; cin >> studsk;
+        for(int j=0;j<studsk;j++){
+            cout<<"Iveskite " <<j+1<<" studenta:\n";
+            Grupe.push_back(ivesk());
+        }
+    } else if (pasirinkimas == 2) {
+        failo_nuskaitymas("kursiokai.txt", Grupe);
+    } else {
+        cout << "Neteisingas pasirinkimas!\n";
+        return 0;
     }
     
     int rez_pasirinkimas;
@@ -175,5 +193,37 @@ float mediana(vector<int> pazymiai) {
         return pazymiai[n/2];
 }
 
+void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
+    ifstream is;
+    is.open(fpav);
+    
+    if (!is) {
+        cout << "Nepavyko atidaryti failo: " << fpav << endl;
+        return;
+    }
 
+    string pirmas;
+    getline(is, pirmas);
 
+    string vard, pav;
+    int nd1, nd2, nd3, nd4, nd5, egz;
+
+    while (is >> vard >> pav >> nd1 >> nd2 >> nd3 >> nd4 >> nd5 >> egz) {
+        Studentas Laik;
+        Laik.vard = vard;
+        Laik.pav = pav;
+        Laik.paz = {nd1, nd2, nd3, nd4, nd5};
+        Laik.egzas = egz;
+
+        Laik.rez_vidurkis = Laik.egzas*0.6 + vidurkis(Laik.paz)*0.4;
+        Laik.rez_mediana = Laik.egzas*0.6 + mediana(Laik.paz)*0.4;
+
+        Grupe.push_back(Laik);
+    }
+
+    is.close();
+
+    if (Grupe.empty()) {
+        cout << "Failas perskaitytas, bet studentu nerasta (tikrinkite formatą)." << endl;
+    }
+}
