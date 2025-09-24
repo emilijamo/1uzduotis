@@ -46,8 +46,8 @@ int main (){
 
     int pasirinkimas;
     cout << "Kaip norite gauti studentu duomenis?\n";
-    cout << "1 - Įvesti patiems arba sugeneruoti\n";
-    cout << "2 - Nuskaityti is failo (kursiokai.txt)\n";
+    cout << "1 - Ivesti patiems arba sugeneruoti\n";
+    cout << "2 - Nuskaityti is failo\n";
     cout << "Jusu pasirinkimas: "; cin >> pasirinkimas;
 
     if (pasirinkimas == 1) {
@@ -63,7 +63,9 @@ int main (){
         cout << "Jusu pasirinkimas: "; cin >> rez_pasirinkimas;           
     } else if (pasirinkimas == 2) {
         rez_pasirinkimas = 3;
-        failo_nuskaitymas("kursiokai.txt", Grupe);
+        string fpav;
+        cout << "Koks jusu failo pavadinimas? (iveskite tikslu failo pavadinima arba idekite jo lokacija) "; cin >> fpav;
+        failo_nuskaitymas(fpav, Grupe);
     } else {
         cout << "Neteisingas pasirinkimas!\n";
         return 0;
@@ -212,8 +214,6 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
     getline(is, pirmas);
 
     string eilute;
-    int nd1, nd2, nd3, nd4, nd5, egz;
-
     while (getline(is, eilute)) {
         stringstream ss(eilute);
         Studentas Laik;
@@ -243,6 +243,3 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
         cout << "Failas perskaitytas, bet studentu nerasta." << endl;
     }
 }
-
-
-
