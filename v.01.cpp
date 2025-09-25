@@ -23,6 +23,7 @@ using std::sort;
 using std::ifstream;
 using std::getline;
 using std::stringstream;
+using std::ofstream;
 
 struct Studentas {
     string vard;
@@ -39,6 +40,8 @@ float mediana(vector<int> pazymiai);
 
 void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe);
 
+void rezultatu_isvedimas(string failo_vardas, vector<Studentas>& Grupe, int rez_pasirinkimas);
+
 bool ar_skaicius(string reiksme);
 
 int skaiciaus_ivedimas(string prasymas, int min=INT_MIN, int max=INT_MAX);
@@ -54,6 +57,9 @@ int main (){
     pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,2);
     
     int rez_pasirinkimas;
+    bool issaugoti_i_faila = false;
+    string isvedamo_failo_pav;
+    
     if (pasirinkimas == 1) {
         int studsk = skaiciaus_ivedimas("Kiek studentu norite ivesti? ", 1);
         for(int j=0;j<studsk;j++){
@@ -72,39 +78,52 @@ int main (){
         string fpav;
         cout << "Koks jusu failo pavadinimas? (iveskite tikslu failo pavadinima arba idekite jo lokacija) "; cin >> fpav;
         failo_nuskaitymas(fpav, Grupe);
-    } else {
-        cout << "Neteisingas pasirinkimas!\n";
-        return 0;
-    }
 
+        cout << "Ar norite rezultatus issaugoti i txt faila?: \n";
+        cout << "1 - taip\n";
+        cout << "2 - ne\n";
+        int issaugoti = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
+        if (issaugoti == 1) {
+            issaugoti_i_faila = true;
+            cout << "Iveskite failo pavadinima, i kuri issaugoti rezultatus: ";
+            cin >> isvedamo_failo_pav;
+        }
+
+        
+    }
+    
     sort(Grupe.begin(), Grupe.end(), [](Studentas a, Studentas b) {
     return a.vard < b.vard; 
     });
-    
-    cout << "--------------------------------------------------\n";
-    cout << left << setw(15) << "Vardas"
-         << left << setw(15) << "Pavarde";
-        
-    if (rez_pasirinkimas == 1)
-        cout << right << setw(10) << "Galutinis (Vid.)\n";
-    else if (rez_pasirinkimas == 2)
-        cout << right << setw(10) << "Galutinis (Med.)\n";
-    else if (rez_pasirinkimas == 3)
-        cout << right << setw(10) << "Galutinis (Vid.) " 
-             << right << setw(10) << "Galutinis (Med.)\n";
-    cout << "--------------------------------------------------\n";
-    
-    for (auto temp :Grupe){
-        cout << left << setw(15) << temp.vard
-             << left << setw(15) << temp.pav;
+
+    if (issaugoti_i_faila) {
+        rezultatu_isvedimas(isvedamo_failo_pav, Grupe, rez_pasirinkimas);
+    } else {    
+        cout << "--------------------------------------------------\n";
+        cout << left << setw(15) << "Vardas"
+             << left << setw(15) << "Pavarde";
             
         if (rez_pasirinkimas == 1)
-            cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis << endl;
+            cout << right << setw(10) << "Galutinis (Vid.)\n";
         else if (rez_pasirinkimas == 2)
-            cout << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
+            cout << right << setw(10) << "Galutinis (Med.)\n";
         else if (rez_pasirinkimas == 3)
-            cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis
-                 << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
+            cout << right << setw(10) << "Galutinis (Vid.) " 
+                 << right << setw(10) << "Galutinis (Med.)\n";
+        cout << "--------------------------------------------------\n";
+        
+        for (auto temp :Grupe){
+            cout << left << setw(15) << temp.vard
+                 << left << setw(15) << temp.pav;
+                
+            if (rez_pasirinkimas == 1)
+                cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis << endl;
+            else if (rez_pasirinkimas == 2)
+                cout << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
+            else if (rez_pasirinkimas == 3)
+                cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis
+                     << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
+        }
     }
 }
 
@@ -261,6 +280,43 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
     }
 }
 
+void rezultatu_isvedimas(string failo_vardas, vector<Studentas>& Grupe, int rez_pasirinkimas) {
+    ofstream os(failo_vardas);
+    if (!os) {
+        cout << "Nepavyko sukurti failo: " << failo_vardas << endl;
+        return;
+    }
+
+    os << "--------------------------------------------------\n";
+    os << left << setw(15) << "Vardas"
+       << left << setw(15) << "Pavarde";
+
+    if (rez_pasirinkimas == 1)
+        os << right << setw(10) << "Galutinis (Vid.)\n";
+    else if (rez_pasirinkimas == 2)
+        os << right << setw(10) << "Galutinis (Med.)\n";
+    else if (rez_pasirinkimas == 3)
+        os << right << setw(10) << "Galutinis (Vid.) "
+           << right << setw(10) << "Galutinis (Med.)\n";
+    os << "--------------------------------------------------\n";
+
+    for (auto &temp : Grupe) {
+        os << left << setw(15) << temp.vard
+           << left << setw(15) << temp.pav;
+
+        if (rez_pasirinkimas == 1)
+            os << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis << endl;
+        else if (rez_pasirinkimas == 2)
+            os << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
+        else if (rez_pasirinkimas == 3)
+            os << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis
+               << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
+    }
+
+    os.close();
+    cout << "Rezultatai issaugoti faile: " << failo_vardas << endl;
+}
+
 bool ar_skaicius(string reiksme) {
     if (reiksme.empty()) return false;
     for (char r : reiksme) {
@@ -269,7 +325,7 @@ bool ar_skaicius(string reiksme) {
     return true;
 }
 
-int skaiciaus_ivedimas(string prasymas, int min=INT_MIN, int max=INT_MAX) {
+int skaiciaus_ivedimas(string prasymas, int min, int max) {
     string ivestis;
     int value;
     while (true) {
@@ -284,4 +340,3 @@ int skaiciaus_ivedimas(string prasymas, int min=INT_MIN, int max=INT_MAX) {
         cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
-
