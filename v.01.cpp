@@ -70,14 +70,25 @@ int main (){
         cout << "1 - pagal vidurki\n";
         cout << "2 - pagal mediana\n";
         cout << "3 - abu\n";
-        cout << "Jusu pasirinkimas: "; 
         rez_pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 3);   
         
     } else if (pasirinkimas == 2) {
         rez_pasirinkimas = 3;
         string fpav;
-        cout << "Koks jusu failo pavadinimas? (iveskite tikslu failo pavadinima arba idekite jo lokacija) "; cin >> fpav;
-        failo_nuskaitymas(fpav, Grupe);
+
+        while (true) {
+            cout << "Koks jusu failo pavadinimas? (iveskite tikslu failo pavadinima arba idekite jo lokacija) ";
+            cin >> fpav;
+
+            failo_nuskaitymas(fpav, Grupe);
+
+            if (!Grupe.empty()) {
+                break;
+            } else {
+                cout << "Nepavyko atidaryti failo arba failas tuscias. Bandykite dar karta.\n";
+            }
+        }
+
 
         cout << "Ar norite rezultatus issaugoti i txt faila?: \n";
         cout << "1 - taip\n";
@@ -356,5 +367,3 @@ int skaiciaus_ivedimas(string prasymas, int min, int max) {
         cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
-
-
