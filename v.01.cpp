@@ -93,9 +93,22 @@ int main (){
     }
     
     sort(Grupe.begin(), Grupe.end(), [](Studentas a, Studentas b) {
-    return a.vard < b.vard; 
-    });
+        string s1 = a.vard, s2 = b.vard;
 
+        int i = 0;
+        while (i < s1.size() && !isdigit(s1[i])) i++;
+        int j = 0;
+        while (j < s2.size() && !isdigit(s2[j])) j++;
+
+        string prefix_s1 = s1.substr(0, i);
+        string prefix_s2 = s2.substr(0, j);
+
+        if (prefix_s1 != prefix_s2)
+            return prefix_s1 < prefix_s2;
+
+        int num_s1 = stoi(s1.substr(i));
+        int num_s2 = stoi(s2.substr(j));
+        
     if (issaugoti_i_faila) {
         rezultatu_isvedimas(isvedamo_failo_pav, Grupe, rez_pasirinkimas);
     } else {    
@@ -340,3 +353,4 @@ int skaiciaus_ivedimas(string prasymas, int min, int max) {
         cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
+
