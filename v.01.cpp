@@ -7,6 +7,7 @@
 #include <ctime> 
 #include <fstream>
 #include <sstream>
+#include <climits>
 
 using std::cout;
 using std::cin;
@@ -40,7 +41,7 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe);
 
 bool ar_skaicius(string reiksme);
 
-int skaiciaus_ivedimas(string prasymas, int min, int max);
+int skaiciaus_ivedimas(string prasymas, int min=INT_MIN, int max=INT_MAX);
 
 int main (){
     srand(time(0));
@@ -54,7 +55,7 @@ int main (){
     
     int rez_pasirinkimas;
     if (pasirinkimas == 1) {
-        int studsk = skaiciaus_ivedimas("Kiek studentu norite ivesti? ", 1,1000);
+        int studsk = skaiciaus_ivedimas("Kiek studentu norite ivesti? ", 1);
         for(int j=0;j<studsk;j++){
             cout<<"Iveskite " <<j+1<<" studenta:\n";
             Grupe.push_back(ivesk());
@@ -167,8 +168,7 @@ Studentas ivesk(){
     }
 
     else if (paz_gen_pasirinkimas == 2) {
-        int gen_kiek;
-        cout << "Kiek namu darbu pazymiu norite sugeneruoti? "; cin >> gen_kiek;
+        int gen_kiek = skaiciaus_ivedimas("Kiek namu darbu pazymiu norite sugeneruoti? ", 1);
         for (int i = 0; i < gen_kiek; i++) {
             int paz = rand() % 10 + 1; 
             Laik.paz.push_back(paz);
@@ -269,7 +269,7 @@ bool ar_skaicius(string reiksme) {
     return true;
 }
 
-int skaiciaus_ivedimas(string prasymas, int min, int max) {
+int skaiciaus_ivedimas(string prasymas, int min=INT_MIN, int max=INT_MAX) {
     string ivestis;
     int value;
     while (true) {
@@ -284,3 +284,4 @@ int skaiciaus_ivedimas(string prasymas, int min, int max) {
         cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
+
