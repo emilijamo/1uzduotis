@@ -108,6 +108,9 @@ int main (){
 
         int num_s1 = stoi(s1.substr(i));
         int num_s2 = stoi(s2.substr(j));
+
+        return num_s1 < num_s2;
+    });
         
     if (issaugoti_i_faila) {
         rezultatu_isvedimas(isvedamo_failo_pav, Grupe, rez_pasirinkimas);
@@ -353,4 +356,5 @@ int skaiciaus_ivedimas(string prasymas, int min, int max) {
         cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
+
 
