@@ -38,20 +38,23 @@ float mediana(vector<int> pazymiai);
 
 void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe);
 
+bool ar_skaicius(string reiksme);
+
+int skaiciaus_ivedimas(string prasymas, int min, int max);
+
 int main (){
     srand(time(0));
     vector<Studentas> Grupe;
-    int studsk;
-    int rez_pasirinkimas;
 
     int pasirinkimas;
     cout << "Kaip norite gauti studentu duomenis?\n";
     cout << "1 - Ivesti patiems arba sugeneruoti\n";
     cout << "2 - Nuskaityti is failo\n";
-    cout << "Jusu pasirinkimas: "; cin >> pasirinkimas;
-
+    pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,2);
+    
+    int rez_pasirinkimas;
     if (pasirinkimas == 1) {
-        cout << "Kiek studentu norite ivesti? "; cin >> studsk;
+        int studsk = skaiciaus_ivedimas("Kiek studentu norite ivesti? ", 1,1000);
         for(int j=0;j<studsk;j++){
             cout<<"Iveskite " <<j+1<<" studenta:\n";
             Grupe.push_back(ivesk());
@@ -60,7 +63,9 @@ int main (){
         cout << "1 - pagal vidurki\n";
         cout << "2 - pagal mediana\n";
         cout << "3 - abu\n";
-        cout << "Jusu pasirinkimas: "; cin >> rez_pasirinkimas;           
+        cout << "Jusu pasirinkimas: "; 
+        rez_pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 3);   
+        
     } else if (pasirinkimas == 2) {
         rez_pasirinkimas = 3;
         string fpav;
@@ -104,8 +109,6 @@ int main (){
 
 Studentas ivesk(){
     Studentas Laik;
-    string n,m;
-    int k;
    
     cout<<"Iveskite varda: "; cin>>Laik.vard;
     cout<<"Iveskite pavarde: "; cin>>Laik.pav;
@@ -114,39 +117,53 @@ Studentas ivesk(){
     cout << "Kaip norite i sistema suvesti rezultatus?\n";
     cout << "1 - patys\n";
     cout << "2 - rezultatai generuojami atsitiktinai\n";
-    cout << "Jusu pasirinkimas: "; cin >> paz_gen_pasirinkimas;
+    paz_gen_pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
     
-   if (paz_gen_pasirinkimas == 1) {
-        cout << "Kiek pazymiu turi studentas (jei nera aisku, iveskite 'neaisku'): "; cin >> n;
+      if (paz_gen_pasirinkimas == 1) {
+
+        string n;
+        while (true) {
+            cout << "Kiek pazymiu turi studentas (jei nera aisku, iveskite 'neaisku'): "; cin >> n;
+            if (n == "neaisku") {
+                break;
+            } else if (ar_skaicius(n)) {
+                int kiek = stoi(n);
+                if (kiek >= 0) {
+                    for (int i = 0; i < kiek; i++) {
+                        cout << "Vedamas " << i+1 << " pazymys is " << kiek << endl;
+                        int paz = skaiciaus_ivedimas("Iveskite pazymi: ", 1, 10);
+                        Laik.paz.push_back(paz);
+                    }
+                    break;
+                } else {
+                    cout << "Studentas negali tureti neigiamo pazymiu skaiciaus.\n";
+                }
+            } else {
+                cout << "Neteisinga ivestis. Prasome ivesti skaiciu arba 'neaisku'.\n";
+            }
+        }
+
         if (n == "neaisku") {
             while (true) {
                 cout << "Iveskite pazymi, norint baigti pazymiu ivedima, parasykite 'baigti': ";
+                string m;
                 cin >> m;
                 if (m == "baigti") break;
-                int paz = stoi(m);
-                if (paz < 1 || paz > 10) {
-                    cout << "Pazymys turi buti intervale nuo 1 iki 10. Pabandykite dar karta.\n";
-                    continue;
-                }
-                Laik.paz.push_back(paz);
-            }
-        } else {
-            int kiek = stoi(n);
-            if (kiek < 0) {
-                cout << "Studentas negali tureti neigiamo pazymiu skaiciaus, pabandykite dar karta\n";
-                return ivesk();
-            }
-            for (int i = 0; i < kiek; i++) {
-                cout << "Iveskite " << i + 1 << " paz. is " << kiek << ": "; cin >> k;
-                if (k < 1 || k > 10) {
-                    cout << "Pazymys turi buti intervale nuo 1 iki 10.\n";
-                    i--;
+                if (ar_skaicius(m)) {
+                    int paz = stoi(m);
+                    if (paz >= 1 && paz <= 10) {
+                        Laik.paz.push_back(paz);
+                    } else {
+                        cout << "Pazymys turi buti intervale nuo 1 iki 10.\n";
+                    }
                 } else {
-                    Laik.paz.push_back(k);
+                    cout << "Neteisinga ivestis, prasome ivesti sveika teigiama skaiciu arba 'baigti'.\n";
                 }
             }
         }
-        cout << "Iveskite egzamina: "; cin >> Laik.egzas;
+
+        Laik.egzas = skaiciaus_ivedimas("Iveskite egzamino pazymi: ", 1, 10);
+
     }
 
     else if (paz_gen_pasirinkimas == 2) {
@@ -241,5 +258,29 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
 
     if (Grupe.empty()) {
         cout << "Failas perskaitytas, bet studentu nerasta." << endl;
+    }
+}
+
+bool ar_skaicius(string reiksme) {
+    if (reiksme.empty()) return false;
+    for (char r : reiksme) {
+        if (!isdigit(r)) return false;
+    }
+    return true;
+}
+
+int skaiciaus_ivedimas(string prasymas, int min, int max) {
+    string ivestis;
+    int value;
+    while (true) {
+        cout << prasymas; cin >> ivestis;
+
+        if (ar_skaicius(ivestis)) {
+            value = stoi(ivestis);
+            if (value >= min && value <= max) {
+                return value;
+            }
+        }
+        cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
