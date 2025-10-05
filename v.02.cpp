@@ -131,7 +131,13 @@ int main (){
             return 0;
         }
     }  
-    
+
+cout << "Kaip norite surikiuoti studentus?\n";
+cout << "1 - Pagal varda\n";
+cout << "2 - Pagal galutini bala\n";
+int rus_pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
+
+if (rus_pasirinkimas == 1) {
     sort(Grupe.begin(), Grupe.end(), [](Studentas a, Studentas b) {
         string s1 = a.vard, s2 = b.vard;
 
@@ -151,6 +157,24 @@ int main (){
 
         return num_s1 < num_s2;
     });
+} else { 
+    sort(Grupe.begin(), Grupe.end(), [rez_pasirinkimas](Studentas a,Studentas b) {
+        float gal_rez_a, gal_rez_b;
+
+        if (rez_pasirinkimas == 1) {
+            gal_rez_a = a.rez_vidurkis;
+            gal_rez_b = b.rez_vidurkis;
+        } else if (rez_pasirinkimas == 2) {
+            gal_rez_a = a.rez_mediana;
+            gal_rez_b = b.rez_mediana;
+        } else { 
+            gal_rez_a = (a.rez_vidurkis + a.rez_mediana) / 2.0;
+            gal_rez_b = (b.rez_vidurkis + b.rez_mediana) / 2.0;
+        }
+
+        return gal_rez_a > gal_rez_b; 
+    });
+}
         
     if (issaugoti_i_faila) {
         rezultatu_isvedimas(isvedamo_failo_pav, Grupe, rez_pasirinkimas);
@@ -432,3 +456,4 @@ void generuoti_faila(string failo_pav, int kiek_stud, int kiek_nd) {
     os.close();
     cout << "Sugeneruotas failas: " << failo_pav << " su " << kiek_stud << " studentais.\n";
 };
+
