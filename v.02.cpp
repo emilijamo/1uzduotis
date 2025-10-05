@@ -25,6 +25,7 @@ using std::ifstream;
 using std::getline;
 using std::stringstream;
 using std::ofstream;
+using std::to_string;
 
 struct Studentas {
     string vard;
@@ -38,14 +39,11 @@ struct Studentas {
 Studentas ivesk();  
 float vidurkis(vector<int> pazymiai);
 float mediana(vector<int> pazymiai);
-
 void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe);
-
 void rezultatu_isvedimas(string failo_vardas, vector<Studentas>& Grupe, int rez_pasirinkimas);
-
 bool ar_skaicius(string reiksme);
-
 int skaiciaus_ivedimas(string prasymas, int min=INT_MIN, int max=INT_MAX);
+void generuoti_faila(string failo_pav, int studsk, int ndsk);
 
 class RandInt {
 public:
@@ -64,7 +62,8 @@ int main (){
     cout << "Kaip norite gauti studentu duomenis?\n";
     cout << "1 - Ivesti patiems arba sugeneruoti\n";
     cout << "2 - Nuskaityti is failo\n";
-    pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,2);
+    cout << "3 - Atsitikinai sugeneruoti ir issaugoti i faila\n";
+    pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,3);
     
     int rez_pasirinkimas;
     bool issaugoti_i_faila = false;
@@ -110,8 +109,28 @@ int main (){
             cin >> isvedamo_failo_pav;
         }
 
-        
-    }
+  } else if (pasirinkimas == 3) {
+        string gen_failo_pav;
+        int studsk, ndsk;
+
+        cout << "Iveskite failo pavadinima, kuriame bus issaugoti sugeneruoti duomenys: ";
+        cin >> gen_failo_pav;
+
+        studsk = skaiciaus_ivedimas("Kiek studentu norite sugeneruoti? ", 1);
+        ndsk = skaiciaus_ivedimas("Kiek namu darbu pazymiu turi kiekvienas studentas? ", 1);
+
+        generuoti_faila(gen_failo_pav, studsk, ndsk);
+
+        int skaityti = skaiciaus_ivedimas("Ar norite iskart ji nuskaityti? (1 - taip, 2 - ne): ", 1, 2);
+
+        if (skaityti == 1) {
+            failo_nuskaitymas(gen_failo_pav, Grupe);
+            rez_pasirinkimas = 3;
+        } else {
+            cout << "Programa baigta. Galite paleisti is naujo ir nuskaityti faila rankiniu budu.\n";
+            return 0;
+        }
+    }  
     
     sort(Grupe.begin(), Grupe.end(), [](Studentas a, Studentas b) {
         string s1 = a.vard, s2 = b.vard;
@@ -380,3 +399,36 @@ int skaiciaus_ivedimas(string prasymas, int min, int max) {
     }
 }
 
+void generuoti_faila(string failo_pav, int kiek_stud, int kiek_nd) {
+    ofstream os(failo_pav);
+    if (!os) {
+        cout << "Nepavyko sukurti failo: " << failo_pav << endl;
+        return;
+    }
+
+    os << left << setw(15) << "Vardas"
+       << left << setw(15) << "Pavarde";
+    for (int i = 1; i <= kiek_nd; i++) {
+        os << left << setw(8) << "ND" << to_string(i);
+    }
+    os << left << setw(10) << "Egz." << endl;
+
+    RandInt rng(1, 10);
+
+    for (int i = 1; i <= kiek_stud; i++) {
+        string vard = "Vardas" + to_string(i);
+        string pav = "Pavarde" + to_string(i);
+
+        os << left << setw(15) << vard
+           << left << setw(15) << pav;
+
+        for (int j = 0; j < kiek_nd; j++) {
+            os << left << setw(8) << rng();
+        }
+
+        os << left << setw(10) << rng() << endl;
+    }
+
+    os.close();
+    cout << "Sugeneruotas failas: " << failo_pav << " su " << kiek_stud << " studentais.\n";
+};
