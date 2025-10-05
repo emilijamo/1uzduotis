@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <climits>
+#include <random>
 
 using std::cout;
 using std::cin;
@@ -46,8 +47,17 @@ bool ar_skaicius(string reiksme);
 
 int skaiciaus_ivedimas(string prasymas, int min=INT_MIN, int max=INT_MAX);
 
+class RandInt {
+public:
+    RandInt(int low, int high) : mt{rd()}, dist{low, high} { }
+    int operator()() { return dist(mt); }
+private:
+    std::random_device rd;
+    std::mt19937 mt;
+    std::uniform_int_distribution<int> dist;
+};
+
 int main (){
-    srand(time(0));
     vector<Studentas> Grupe;
 
     int pasirinkimas;
@@ -214,9 +224,11 @@ Studentas ivesk(){
     }
 
     else if (paz_gen_pasirinkimas == 2) {
+        RandInt rng(1, 10); 
+        
         int gen_kiek = skaiciaus_ivedimas("Kiek namu darbu pazymiu norite sugeneruoti? ", 1);
         for (int i = 0; i < gen_kiek; i++) {
-            int paz = rand() % 10 + 1; 
+            int paz = rng(); 
             Laik.paz.push_back(paz);
         }
 
@@ -226,7 +238,7 @@ Studentas ivesk(){
         }
         cout << endl;
 
-        Laik.egzas = rand() % 10 +1; 
+        Laik.egzas = rng(); 
         cout << "Sugeneruotas egzamino pazymys: " << Laik.egzas << endl;
     }
 
@@ -367,3 +379,4 @@ int skaiciaus_ivedimas(string prasymas, int min, int max) {
         cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
+
