@@ -174,6 +174,15 @@ if (rus_pasirinkimas == 1) {
 
         return gal_rez_a > gal_rez_b; 
     });
+    
+vector<Studentas> vargsciukai, kietiakiai;
+for (auto temp : Grupe) {
+    float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
+    if (galutinis < 5.0)
+        vargsciukai.push_back(temp);
+    else
+        kietiakiai.push_back(temp);
+}
 }
         
     if (issaugoti_i_faila) {
@@ -456,4 +465,5 @@ void generuoti_faila(string failo_pav, int kiek_stud, int kiek_nd) {
     os.close();
     cout << "Sugeneruotas failas: " << failo_pav << " su " << kiek_stud << " studentais.\n";
 };
+
 
