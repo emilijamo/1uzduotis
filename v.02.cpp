@@ -66,8 +66,6 @@ int main (){
     pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,3);
     
     int rez_pasirinkimas;
-    bool issaugoti_i_faila = false;
-    string isvedamo_failo_pav;
     
     if (pasirinkimas == 1) {
         int studsk = skaiciaus_ivedimas("Kiek studentu norite ivesti? ", 1);
@@ -96,17 +94,6 @@ int main (){
             } else {
                 cout << "Nepavyko atidaryti failo arba failas tuscias. Bandykite dar karta.\n";
             }
-        }
-
-
-        cout << "Ar norite rezultatus issaugoti i txt faila?: \n";
-        cout << "1 - taip\n";
-        cout << "2 - ne\n";
-        int issaugoti = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
-        if (issaugoti == 1) {
-            issaugoti_i_faila = true;
-            cout << "Iveskite failo pavadinima, i kuri issaugoti rezultatus: ";
-            cin >> isvedamo_failo_pav;
         }
 
   } else if (pasirinkimas == 3) {
@@ -174,19 +161,47 @@ if (rus_pasirinkimas == 1) {
 
         return gal_rez_a > gal_rez_b; 
     });
+}
+        cout << "Ar norite rezultatus issaugoti i txt faila?: \n";
+        cout << "1 - taip\n";
+        cout << "2 - ne\n";
+        int issaugoti = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
+        if (issaugoti == 1) {
+            cout << "Ar norite studentus suskirstyti i vargsiukus (iki 5) ir kietiakus (nuo 5)?:\n";
+            cout << "1 - taip\n";
+           cout << "2 - ne\n";
+           int kategorizavimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
+
+            if (kategorizavimas == 1) {
+                vector<Studentas> vargsiukai, kietiakai;
+                
+                for (auto temp : Grupe) {
+                    float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
+                    if (galutinis < 5.0)
+                        vargsiukai.push_back(temp);
+                    else
+                        kietiakai.push_back(temp);
+                }
+             string vargsiuku_failas, kietiaku_failas;
+            cout << "Iveskite vargsiuku failo pavadinima: ";
+            cin >> vargsiuku_failas;
+            cout << "Iveskite kietiaku failo pavadinima: ";
+            cin >> kietiaku_failas;
     
-vector<Studentas> vargsciukai, kietiakiai;
-for (auto temp : Grupe) {
-    float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
-    if (galutinis < 5.0)
-        vargsciukai.push_back(temp);
-    else
-        kietiakiai.push_back(temp);
-}
-}
-        
-    if (issaugoti_i_faila) {
-        rezultatu_isvedimas(isvedamo_failo_pav, Grupe, rez_pasirinkimas);
+            if (!vargsiukai.empty())
+                rezultatu_isvedimas(vargsiuku_failas, vargsiukai, rez_pasirinkimas);
+            if (!kietiakai.empty())
+                rezultatu_isvedimas(kietiaku_failas, kietiakai, rez_pasirinkimas);
+    
+            cout << "Studentai suskirstyti i failus: "
+                 << vargsiuku_failas << " (vargsiukai) ir "
+                 << kietiaku_failas << " (kietiakai).\n";
+            } else if (kategorizavimas ==2) {
+                string failo_pav;
+                cout << "Iveskite failo pavadinima, i kuri issaugoti rezultatus: ";
+                cin >> failo_pav;
+                rezultatu_isvedimas(failo_pav, Grupe, rez_pasirinkimas);
+            }
     } else {    
         cout << "--------------------------------------------------\n";
         cout << left << setw(15) << "Vardas"
@@ -465,5 +480,3 @@ void generuoti_faila(string failo_pav, int kiek_stud, int kiek_nd) {
     os.close();
     cout << "Sugeneruotas failas: " << failo_pav << " su " << kiek_stud << " studentais.\n";
 };
-
-
