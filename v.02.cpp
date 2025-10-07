@@ -457,7 +457,7 @@ void generuoti_faila(string failo_pav, int kiek_stud, int kiek_nd) {
     os << left << setw(15) << "Vardas"
        << left << setw(15) << "Pavarde";
     for (int i = 1; i <= kiek_nd; i++) {
-        os << left << setw(8) << "ND" << to_string(i);
+        os << left << setw(8) << ("ND" + to_string(i));
     }
     os << left << setw(10) << "Egz." << endl;
 
@@ -480,3 +480,4 @@ void generuoti_faila(string failo_pav, int kiek_stud, int kiek_nd) {
     os.close();
     cout << "Sugeneruotas failas: " << failo_pav << " su " << kiek_stud << " studentais.\n";
 };
+
