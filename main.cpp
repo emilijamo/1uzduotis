@@ -166,12 +166,8 @@ if (rus_pasirinkimas == 1) {
     auto end_sort = high_resolution_clock::now();
     rusiavimo_laikas = duration<double>(end_sort - start_sort).count();
 
-      if (matuoti_laika) {
-        cout << Grupe.size() << " irasu rusiavimas didejimo tvarka laikas, su sort funkcija: " << rusiavimo_laikas << endl;
-    }
-
     if (matuoti_laika) {
-        cout << "Automatiskai skirstoma i vargsiukus ir kietiakus.\n";
+        cout << "\nAutomatiskai skirstoma i vargsiukus ir kietiakus.\n";
 
         auto start_split = high_resolution_clock::now();
         vector<Studentas> vargsiukai, kietiakai;
@@ -202,12 +198,13 @@ if (rus_pasirinkimas == 1) {
         double bendras_laikas = nuskaitymo_laikas + rusiavimo_laikas + dalijimo_laikas +
                                vargsiuku_irasymo_laikas + kietiaku_irasymo_laikas;
 
-        cout << "Bendri testavimo rezultatai, kai faile yra" << Grupe.size() <<"duomenu : \n";
-        cout << rusiavimo_laikas << " - studentu rusiavimo pagal galutini rezultata laikas.\n";
-        cout << dalijimo_laikas << " - studentu dalijimo i vargsiukus ir kietiakus laikas.\n";
-        cout << vargsiuku_irasymo_laikas <<" - studentu vargsiuku irasymo i faila laikas.\n";
-        cout << kietiaku_irasymo_laikas <<" - studentu kietiaku irasymo i faila laikas.\n";
-        cout << "Bendras testavimo laikas: " << bendras_laikas << endl; 
+        cout << "\nBendri testavimo rezultatai, kai faile yra " << Grupe.size() <<" duomenu : \n";
+        cout << endl << nuskaitymo_laikas << " - studentu duomenu nuskaitymas is tekstinio failo.\n";
+        cout << endl << rusiavimo_laikas << " - studentu rusiavimo pagal galutini rezultata laikas.\n";
+        cout << endl << dalijimo_laikas << " - studentu dalijimo i vargsiukus ir kietiakus laikas.\n";
+        cout << endl << vargsiuku_irasymo_laikas <<" - studentu vargsiuku irasymo i faila laikas.\n";
+        cout << endl << kietiaku_irasymo_laikas <<" - studentu kietiaku irasymo i faila laikas.\n";
+        cout << endl << "Bendras testavimo laikas: " << bendras_laikas << endl; 
 
         cout << "\nTestavimas baigtas, jei norite testuoti kitu scenarijumi, paleiskite programa vel.";
 
@@ -283,4 +280,3 @@ if (rus_pasirinkimas == 1) {
     }
 
 }
-
