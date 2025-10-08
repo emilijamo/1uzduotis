@@ -198,6 +198,7 @@ if (rus_pasirinkimas == 1) {
         double bendras_laikas = nuskaitymo_laikas + rusiavimo_laikas + dalijimo_laikas +
                                vargsiuku_irasymo_laikas + kietiaku_irasymo_laikas;
 
+        cout << fixed << setprecision(3);
         cout << "\nBendri testavimo rezultatai, kai faile yra " << Grupe.size() <<" duomenu : \n";
         cout << endl << nuskaitymo_laikas << " - studentu duomenu nuskaitymas is tekstinio failo.\n";
         cout << endl << rusiavimo_laikas << " - studentu rusiavimo pagal galutini rezultata laikas.\n";
@@ -280,3 +281,4 @@ if (rus_pasirinkimas == 1) {
     }
 
 }
+
