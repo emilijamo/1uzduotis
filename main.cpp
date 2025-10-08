@@ -31,9 +31,17 @@ int main (){
     cout << "1 - Ivesti patiems arba sugeneruoti\n";
     cout << "2 - Nuskaityti is failo\n";
     cout << "3 - Atsitikinai sugeneruoti ir issaugoti i faila\n";
-    pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,3);
+    cout << "Jei norite atlikti spartos analize, iveskite 4\n";
+    pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,4);
+    
 
     double generavimo_laikas = 0.0;
+    double nuskaitymo_laikas = 0.0;
+    double rusiavimo_laikas = 0.0;
+    double dalijimo_laikas = 0.0;
+    double vargsiuku_irasymo_laikas = 0.0;
+    double kietiaku_irasymo_laikas = 0.0;
+    bool matuoti_laika = (pasirinkimas == 4);
     
     int rez_pasirinkimas;
     if (pasirinkimas == 1) {
@@ -55,7 +63,7 @@ int main (){
         while (true) {
             cout << "Koks jusu failo pavadinimas? (iveskite tikslu failo pavadinima arba idekite jo lokacija) ";
             cin >> fpav;
-
+            
             failo_nuskaitymas(fpav, Grupe);
 
             if (!Grupe.empty()) {
@@ -93,12 +101,30 @@ int main (){
             return 0;
         }
     }  
+    else if (pasirinkimas == 4) {
+        rez_pasirinkimas = 3;
+        string fpav;
+        cout << "Iveskite failo pavadinima, kuri naudosite testavimui: ";
+        cin >> fpav;
+
+        auto start_read = high_resolution_clock::now();
+        failo_nuskaitymas(fpav, Grupe);
+        auto end_read = high_resolution_clock::now();
+        nuskaitymo_laikas = duration<double>(end_read - start_read).count();
+
+        if (Grupe.empty()) {
+            cout << "Failas tuscias arba nepavyko atidaryti. Testavimas nutraukiamas.\n";
+            return 0;
+        }
+        cout << "Failas perskaitytas. Jame yra " << Grupe.size() << " irasu."<<endl;
+    }
 
 cout << "Kaip norite surikiuoti studentus?\n";
 cout << "1 - Pagal varda\n";
 cout << "2 - Pagal galutini bala\n";
 int rus_pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
 
+auto start_sort = high_resolution_clock::now();    
 if (rus_pasirinkimas == 1) {
     sort(Grupe.begin(), Grupe.end(), [](Studentas a, Studentas b) {
         string s1 = a.vard, s2 = b.vard;
@@ -137,6 +163,57 @@ if (rus_pasirinkimas == 1) {
         return gal_rez_a > gal_rez_b; 
     });
 }
+    auto end_sort = high_resolution_clock::now();
+    rusiavimo_laikas = duration<double>(end_sort - start_sort).count();
+
+      if (matuoti_laika) {
+        cout << Grupe.size() << " irasu rusiavimas didejimo tvarka laikas, su sort funkcija: " << rusiavimo_laikas << endl;
+    }
+
+    if (matuoti_laika) {
+        cout << "Automatiskai skirstoma i vargsiukus ir kietiakus.\n";
+
+        auto start_split = high_resolution_clock::now();
+        vector<Studentas> vargsiukai, kietiakai;
+        for (auto temp : Grupe) {
+            float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
+            if (galutinis < 5.0)
+                vargsiukai.push_back(temp);
+            else
+                kietiakai.push_back(temp);
+        }
+        auto end_split = high_resolution_clock::now();
+        dalijimo_laikas = duration<double>(end_split - start_split).count();
+
+
+        auto start_write_vargsiukai = high_resolution_clock::now();
+        if (!vargsiukai.empty())
+            rezultatu_isvedimas("vargsiukai.txt", vargsiukai, rez_pasirinkimas);
+        auto end_write_vargsiukai = high_resolution_clock::now();
+        vargsiuku_irasymo_laikas = duration<double>(end_write_vargsiukai - start_write_vargsiukai).count();
+
+        auto start_write_kietiakai = high_resolution_clock::now();
+        if (!kietiakai.empty())
+            rezultatu_isvedimas("kietiakai.txt", kietiakai, rez_pasirinkimas);
+        auto end_write_kietiakai = high_resolution_clock::now();
+        kietiaku_irasymo_laikas = duration<double>(end_write_kietiakai - start_write_kietiakai).count();
+
+
+        double bendras_laikas = nuskaitymo_laikas + rusiavimo_laikas + dalijimo_laikas +
+                               vargsiuku_irasymo_laikas + kietiaku_irasymo_laikas;
+
+        cout << "Bendri testavimo rezultatai, kai faile yra" << Grupe.size() <<"duomenu : \n";
+        cout << rusiavimo_laikas << " - studentu rusiavimo pagal galutini rezultata laikas.\n";
+        cout << dalijimo_laikas << " - studentu dalijimo i vargsiukus ir kietiakus laikas.\n";
+        cout << vargsiuku_irasymo_laikas <<" - studentu vargsiuku irasymo i faila laikas.\n";
+        cout << kietiaku_irasymo_laikas <<" - studentu kietiaku irasymo i faila laikas.\n";
+        cout << "Bendras testavimo laikas: " << bendras_laikas << endl; 
+
+        cout << "\nTestavimas baigtas, jei norite testuoti kitu scenarijumi, paleiskite programa vel.";
+
+        return 0;
+    }
+    
         cout << "Ar norite rezultatus issaugoti i txt faila?: \n";
         cout << "1 - taip\n";
         cout << "2 - ne\n";
@@ -206,3 +283,4 @@ if (rus_pasirinkimas == 1) {
     }
 
 }
+
