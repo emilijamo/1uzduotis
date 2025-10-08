@@ -7,6 +7,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <chrono>
+
 
 using std::cout;
 using std::cin;
@@ -19,7 +21,7 @@ using std::fixed;
 using std::setprecision;
 using std::sort;
 using std::endl;
-
+using namespace std::chrono;
 
 int main (){
     vector<Studentas> Grupe;
@@ -30,9 +32,10 @@ int main (){
     cout << "2 - Nuskaityti is failo\n";
     cout << "3 - Atsitikinai sugeneruoti ir issaugoti i faila\n";
     pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,3);
+
+    double generavimo_laikas = 0.0;
     
     int rez_pasirinkimas;
-    
     if (pasirinkimas == 1) {
         int studsk = skaiciaus_ivedimas("Kiek studentu norite ivesti? ", 1);
         for(int j=0;j<studsk;j++){
@@ -71,9 +74,15 @@ int main (){
 
         studsk = skaiciaus_ivedimas("Kiek studentu norite sugeneruoti? ", 1);
         ndsk = skaiciaus_ivedimas("Kiek namu darbu pazymiu turi kiekvienas studentas? ", 1);
-
+        
+        auto start_gen = high_resolution_clock::now();
         generuoti_faila(gen_failo_pav, studsk, ndsk);
-
+        auto end_gen = high_resolution_clock::now();
+        
+        duration<double> diff_gen = end_gen - start_gen;
+        generavimo_laikas = diff_gen.count();
+        cout << studsk << " irasu failo generavimo laikas: " << generavimo_laikas << endl;
+        
         int skaityti = skaiciaus_ivedimas("Ar norite iskart ji nuskaityti? (1 - taip, 2 - ne): ", 1, 2);
 
         if (skaityti == 1) {
@@ -195,4 +204,5 @@ if (rus_pasirinkimas == 1) {
                      << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
         }
     }
+
 }
