@@ -11,6 +11,8 @@ Duomenis nuskaitant iš failo, naudotojas gali pasirinkti, nori matyti rezultat�
 
 **Greičio tyrimai**
 
+*Tyrimai atliekami naudojant konteinerį std::vector*
+
 *Failų generavimo greitis*
 
 Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,1000000,10000000*** studentų ir kiekvienu atveju, pažymėta, kad jie turi po *5* namų darbų pažymius, kad būtų galima lyginti rezultatus tarpusavyje. Matavimas buvo atliktas ***3*** kartus, tokiomis pačiomis sąlygomis ir išvestas vidurkis, pateikiamas 3 skaičių po kablelio tikslumu (milisekundėmis):
