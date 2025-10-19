@@ -11,6 +11,14 @@ Duomenis nuskaitant iš failo, naudotojas gali pasirinkti, nori matyti rezultat�
 
 **Greičio tyrimai**
 
+*Testavimo sistemos parametrai*
+
+***CPU***: Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz
+
+***RAM***: 8.0 GB
+
+***HDD***: SAMSUNG MZNLN256HMHQ-000, tipas - SSD
+
 *Tyrimai atliekami naudojant konteinerį std::vector*
 
 *Failų generavimo greitis*
@@ -108,4 +116,6 @@ Išskirstymas - 9.637s
 
 
 Bendras laikas: 290.712s
+
+
 
