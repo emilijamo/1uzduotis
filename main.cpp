@@ -290,7 +290,7 @@ int main (){
             }
         }
     } else {
-            vector<Studentas> Grupe;
+        list<Studentas> Grupe;
     
         int pasirinkimas;
         cout << "Kaip norite gauti studentu duomenis?\n";
@@ -340,7 +340,6 @@ int main (){
             }
     
       } else if (pasirinkimas == 3) {
-            list<Studentas> Grupe;
             
             string gen_failo_pav;
             int studsk, ndsk;
@@ -394,7 +393,7 @@ int main (){
     
     auto start_sort = high_resolution_clock::now();    
     if (rus_pasirinkimas == 1) {
-        sort(Grupe.begin(), Grupe.end(), [](Studentas a, Studentas b) {
+        Grupe.sort( [](Studentas a, Studentas b) {
             string s1 = a.vard, s2 = b.vard;
     
             int i = 0;
@@ -414,7 +413,7 @@ int main (){
             return num_s1 < num_s2;
         });
     } else { 
-        sort(Grupe.begin(), Grupe.end(), [rez_pasirinkimas](Studentas a,Studentas b) {
+        Grupe.sort([rez_pasirinkimas](Studentas a,Studentas b) {
             float gal_rez_a, gal_rez_b;
     
             if (rez_pasirinkimas == 1) {
@@ -438,7 +437,7 @@ int main (){
             cout << "\nAutomatiskai skirstoma i vargsiukus ir kietiakus.\n";
     
             auto start_split = high_resolution_clock::now();
-            vector<Studentas> vargsiukai, kietiakai;
+            list<Studentas> vargsiukai, kietiakai;
             for (auto temp : Grupe) {
                 float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
                 if (galutinis < 5.0)
@@ -491,7 +490,7 @@ int main (){
                int kategorizavimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
     
                 if (kategorizavimas == 1) {
-                    vector<Studentas> vargsiukai, kietiakai;
+                    list<Studentas> vargsiukai, kietiakai;
                     
                     for (auto temp : Grupe) {
                         float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
@@ -551,6 +550,7 @@ int main (){
     }
     
     }
+
 
 
 
