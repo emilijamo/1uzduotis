@@ -24,6 +24,13 @@ using std::endl;
 using namespace std::chrono;
 
 int main (){
+    int konteineris;
+    cout << "Koki konteineri norite naudoti programoje?\n";
+    cout << "1 - std::vector\n";
+    cout << "2 - std::list\n";
+    konteineris = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
+    bool konteineris_vektorius = (konteineris==1);
+
     vector<Studentas> Grupe;
 
     int pasirinkimas;
@@ -281,4 +288,5 @@ if (rus_pasirinkimas == 1) {
     }
 
 }
+
 
