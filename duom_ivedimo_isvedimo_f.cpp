@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <list>
 #include "skaiciavimo_f.h"
 #include "pagalbines_f.h"
 #include "duom_ivedimo_isvedimo_f.h"
@@ -21,6 +22,7 @@ using std::right;
 using std::fixed;
 using std::setprecision;
 using std::to_string;
+using std::list;
 
 
 Studentas ivesk(){
@@ -109,7 +111,8 @@ Studentas ivesk(){
 
     }
 
-void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
+template <typename Konteineris>
+void failo_nuskaitymas(string fpav, Konteineris& Grupe) {
     ifstream is;
     is.open(fpav);
     
@@ -152,7 +155,8 @@ void failo_nuskaitymas(string fpav, vector<Studentas>& Grupe) {
     }
 }
 
-void rezultatu_isvedimas(string failo_vardas, vector<Studentas>& Grupe, int rez_pasirinkimas) {
+template <typename Konteineris>
+void rezultatu_isvedimas(string failo_vardas, Konteineris& Grupe, int rez_pasirinkimas) {
     ofstream os(failo_vardas);
     if (!os) {
         cout << "Nepavyko sukurti failo: " << failo_vardas << endl;
@@ -221,4 +225,10 @@ void generuoti_faila(string failo_pav, int kiek_stud, int kiek_nd) {
 
     os.close();
     cout << "Sugeneruotas failas: " << failo_pav << " su " << kiek_stud << " studentais.\n";
+
 };
+
+template void failo_nuskaitymas<vector<Studentas>>(string fpav, vector<Studentas>& Grupe);
+template void failo_nuskaitymas<list<Studentas>>(string fpav, list<Studentas>& Grupe);
+template void rezultatu_isvedimas<vector<Studentas>>(string failo_vardas, vector<Studentas>& Grupe, int rez_pasirinkimas);
+template void rezultatu_isvedimas<list<Studentas>>(string failo_vardas, list<Studentas>& Grupe, int rez_pasirinkimas);
