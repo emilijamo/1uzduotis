@@ -39,6 +39,8 @@ Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,
 
 Ši analizė atlikta naudojant pirmojo generavimo metu gautą failą su atitinkamu studentų skaičiumi, t.y. ***1000, 10000,100000,1000000,10000000***. Matuojami buvo 5 programos veiksnumai: nuskaitymas iš failo, duomenų rūšiavimas pagal galutinį pažymį(šiuo atveju kreipiamas dėmesys ir į mediana skaičiuota pažymi, ir į vidurkiu), studentų išskirstymas pagal pažymius į vargšiukus ir kietiakus (skirstymo pagrindas apibrėžtas programos aprašyme), tuomet tų grupių išvedimas į du atskirus failus bei bendras programos veikimo laikas, t.y. visų kitų laikų suma. Analizė buvo atlikta ***3*** kartus, tokiomis pačiomis sąlygomis ir išvestas vidurkis, pateikiamas 3 skaičių po kablelio tikslumu (milisekundėmis): 
 
+**Testavimas su konteineriu std::vector**
+
 *1000 eilučių testavimas*
 
 Nuskaitymas - 0.007s
@@ -118,4 +120,85 @@ Išskirstymas - 9.637s
 Bendras laikas: 290.712s
 
 
+**Testavimas su konteineriu std::list**
 
+Ši analizė atlikta naudojant pirmojo generavimo metu gautą failą su atitinkamu studentų skaičiumi, t.y. ***1000, 10000,100000,1000000,10000000*** - tokie patys failai, kokie naudoti konteinrio std::vector analizėje. Matuojami buvo 5 programos veiksnumai: nuskaitymas iš failo, duomenų rūšiavimas pagal galutinį pažymį(šiuo atveju kreipiamas dėmesys ir į mediana skaičiuota pažymi, ir į vidurkiu), studentų išskirstymas pagal pažymius į vargšiukus ir kietiakus (skirstymo pagrindas apibrėžtas programos aprašyme), tuomet tų grupių išvedimas į du atskirus failus bei bendras programos veikimo laikas, t.y. visų kitų laikų suma. Tiek failų kūrimas, tiek ir surūšiuotų rezultatų išvedimas į failus nepriklauso nuo naudojamo konteinerio, bet, kad būtų galima palyginti bendrą veikimo laiką su skirtingais konteineriais, tai yra matuojami ir šie laikai. Analizė buvo atlikta ***3*** kartus, tokiomis pačiomis sąlygomis ir išvestas vidurkis, pateikiamas 3 skaičių po kablelio tikslumu (milisekundėmis): 
+
+*1000 eilučių testavimas*
+
+Nuskaitymas - 0.012s
+
+Rūšiavimas - 0.008s
+
+Išskirstymas - 0.001s
+
+"Vargšiukų" įrašymas - 0.007s
+
+"Kietiakų" įrašymas - 0.008s
+
+
+Bendras laikas: 0.035s
+
+
+*10000 eilučių testavimas*
+
+Nuskaitymas - 0.08s
+
+Rūšiavimas - 0.134s
+
+Išskirstymas - 0.015s
+
+"Vargšiukų" įrašymas - 0.064s 
+
+"Kietiakų" įrašymas - 0.065s
+
+
+Bendras laikas: 0.358s
+
+
+*100000 eilučių testavimas*
+
+Nuskaitymas - 0.619s
+
+Rūšiavimas - 1.284s
+
+Išskirstymas - 0.142s
+
+"Vargšiukų" įrašymas - 0.456s
+
+"Kietiakų" įrašymas - 0.513s
+
+
+Bendras laikas: 3.014s
+
+
+*1000000 eilučių testavimas*
+
+Nuskaitymas - 5.871s
+
+Rūšiavimas - 14.653s
+
+Išskirstymas - 1.041s
+
+"Vargšiukų" įrašymas - 4.247s 
+
+"Kietiakų" įrašymas - 6.393s
+
+
+Bendras laikas: 32.205s
+
+
+*10000000 eilučių testavimas*
+
+Nuskaitymas - 61.269s
+
+Rūšiavimas - 192.896s
+
+Išskirstymas - 27.693s
+
+"Vargšiukų" įrašymas - 40.411s 
+
+"Kietiakų" įrašymas - 70.382s
+
+
+Bendras laikas: 392.652s
