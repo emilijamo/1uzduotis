@@ -134,7 +134,9 @@ int main (){
     cout << "2 - Pagal galutini bala\n";
     int rus_pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
 
-    cout << "Studento adresas atmintyje: " << &Grupe.back() << endl;
+        for (auto& studentas : Grupe) {
+            cout << "Studento adresas atmintyje: " << &studentas << endl;
+        }
     
     auto start_sort = high_resolution_clock::now();    
     if (rus_pasirinkimas == 1) {
@@ -554,6 +556,7 @@ int main (){
     }
     
     }
+
 
 
 
