@@ -25,15 +25,14 @@ Duomenis nuskaitant iš failo, naudotojas gali pasirinkti, nori matyti rezultat�
 
 Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,1000000,10000000*** studentų ir kiekvienu atveju, pažymėta, kad jie turi po *5* namų darbų pažymius, kad būtų galima lyginti rezultatus tarpusavyje. Matavimas buvo atliktas ***3*** kartus, tokiomis pačiomis sąlygomis ir išvestas vidurkis, pateikiamas 3 skaičių po kablelio tikslumu (milisekundėmis):
 
-1000 studentų generavimas vidutiniškai užtruko - 0.027s
+| Studentų kiekis | Vidutinis generavimo laikas (s) |
+| --------------- | ------------------------------- |
+| 1 000           | 0.027                           |
+| 10 000          | 0.093                           |
+| 100 000         | 1.030                           |
+| 1 000 000       | 8.483                           |
+| 10 000 000      | 91.611                          |
 
-10000 studentų generavimas vidutiniškai užtruko - 0.093s
-
-100000 studentų generavimas vidutiniškai užtruko - 1.03s
-
-1000000 studentų generavimas vidutiniškai užtruko - 8.483s
-
-10000000 studentų generavimas vidutiniškai užtruko - 91.611s
 
 *Programos veikimo spartos analizė*
 
@@ -43,81 +42,66 @@ Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,
 
 *1000 eilučių testavimas*
 
-Nuskaitymas - 0.007s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 0.007      |
+| Rūšiavimas           | 0.010      |
+| Išskirstymas         | 0.001      |
+| „Vargšiukų“ įrašymas | 0.008      |
+| „Kietiakų“ įrašymas  | 0.008      |
+| **Bendras laikas**   | **0.034**  |
 
-Rūšiavimas - 0.01s
-
-Išskirstymas - 0.001s
-
-"Vargšiukų" įrašymas - 0.008s
-
-"Kietiakų" įrašymas - 0.008s
-
-
-Bendras laikas: 0.034s
 
 *10000 eilučių testavimas*
 
-Nuskaitymas - 0.048s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 0.048      |
+| Rūšiavimas           | 0.083      |
+| Išskirstymas         | 0.007      |
+| „Vargšiukų“ įrašymas | 0.032      |
+| „Kietiakų“ įrašymas  | 0.045      |
+| **Bendras laikas**   | **0.216**  |
 
-Rūšiavimas - 0.083s
-
-Išskirstymas - 0.007s
-
-"Vargšiukų" įrašymas - 0.032s 
-
-"Kietiakų" įrašymas - 0.045s
-
-
-Bendras laikas: 0.216s
 
 
 *100000 eilučių testavimas*
 
-Nuskaitymas - 0.458s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 0.458      |
+| Rūšiavimas           | 1.140      |
+| Išskirstymas         | 0.076      |
+| „Vargšiukų“ įrašymas | 0.305      |
+| „Kietiakų“ įrašymas  | 0.445      |
+| **Bendras laikas**   | **2.424**  |
 
-Rūšiavimas - 1.140s
-
-Išskirstymas - 0.076s
-
-"Vargšiukų" įrašymas - 0.305s
-
-"Kietiakų" įrašymas - 0.445s
-
-
-Bendras laikas: 2.424s
 
 
 *1000000 eilučių testavimas*
 
-Nuskaitymas - 4.775s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 4.775      |
+| Rūšiavimas           | 13.834     |
+| Išskirstymas         | 0.792      |
+| „Vargšiukų“ įrašymas | 2.952      |
+| „Kietiakų“ įrašymas  | 4.758      |
+| **Bendras laikas**   | **27.111** |
 
-Rūšiavimas - 13.834s
-
-Išskirstymas - 0.792s
-
-"Vargšiukų" įrašymas - 2.952s 
-
-"Kietiakų" įrašymas - 4.758s
-
-
-Bendras laikas: 27.111s
 
 
 *10000000 eilučių testavimas*
 
-Nuskaitymas - 46.233s
+| Veiksmas             | Laikas (s)  |
+| -------------------- | ----------- |
+| Nuskaitymas          | 46.233      |
+| Rūšiavimas           | 161.059     |
+| Išskirstymas         | 9.637       |
+| „Vargšiukų“ įrašymas | 30.190      |
+| „Kietiakų“ įrašymas  | 43.593      |
+| **Bendras laikas**   | **290.712** |
 
-Rūšiavimas - 161.059s
-
-Išskirstymas - 9.637s
-
-"Vargšiukų" įrašymas - 30.190s 
-
-"Kietiakų" įrašymas - 43.593s
-
-
-Bendras laikas: 290.712s
 
 
 **Testavimas su konteineriu std::list**
@@ -126,79 +110,64 @@ Bendras laikas: 290.712s
 
 *1000 eilučių testavimas*
 
-Nuskaitymas - 0.012s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 0.012      |
+| Rūšiavimas           | 0.008      |
+| Išskirstymas         | 0.001      |
+| „Vargšiukų“ įrašymas | 0.007      |
+| „Kietiakų“ įrašymas  | 0.008      |
+| **Bendras laikas**   | **0.035**  |
 
-Rūšiavimas - 0.008s
-
-Išskirstymas - 0.001s
-
-"Vargšiukų" įrašymas - 0.007s
-
-"Kietiakų" įrašymas - 0.008s
-
-
-Bendras laikas: 0.035s
 
 
 *10000 eilučių testavimas*
 
-Nuskaitymas - 0.08s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 0.080      |
+| Rūšiavimas           | 0.134      |
+| Išskirstymas         | 0.015      |
+| „Vargšiukų“ įrašymas | 0.064      |
+| „Kietiakų“ įrašymas  | 0.065      |
+| **Bendras laikas**   | **0.358**  |
 
-Rūšiavimas - 0.134s
-
-Išskirstymas - 0.015s
-
-"Vargšiukų" įrašymas - 0.064s 
-
-"Kietiakų" įrašymas - 0.065s
-
-
-Bendras laikas: 0.358s
 
 
 *100000 eilučių testavimas*
 
-Nuskaitymas - 0.619s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 0.619      |
+| Rūšiavimas           | 1.284      |
+| Išskirstymas         | 0.142      |
+| „Vargšiukų“ įrašymas | 0.456      |
+| „Kietiakų“ įrašymas  | 0.513      |
+| **Bendras laikas**   | **3.014**  |
 
-Rūšiavimas - 1.284s
-
-Išskirstymas - 0.142s
-
-"Vargšiukų" įrašymas - 0.456s
-
-"Kietiakų" įrašymas - 0.513s
-
-
-Bendras laikas: 3.014s
 
 
 *1000000 eilučių testavimas*
 
-Nuskaitymas - 5.871s
+| Veiksmas             | Laikas (s) |
+| -------------------- | ---------- |
+| Nuskaitymas          | 5.871      |
+| Rūšiavimas           | 14.653     |
+| Išskirstymas         | 1.041      |
+| „Vargšiukų“ įrašymas | 4.247      |
+| „Kietiakų“ įrašymas  | 6.393      |
+| **Bendras laikas**   | **32.205** |
 
-Rūšiavimas - 14.653s
-
-Išskirstymas - 1.041s
-
-"Vargšiukų" įrašymas - 4.247s 
-
-"Kietiakų" įrašymas - 6.393s
-
-
-Bendras laikas: 32.205s
 
 
 *10000000 eilučių testavimas*
 
-Nuskaitymas - 61.269s
+| Veiksmas             | Laikas (s)  |
+| -------------------- | ----------- |
+| Nuskaitymas          | 61.269      |
+| Rūšiavimas           | 192.896     |
+| Išskirstymas         | 27.693      |
+| „Vargšiukų“ įrašymas | 40.411      |
+| „Kietiakų“ įrašymas  | 70.382      |
+| **Bendras laikas**   | **392.652** |
 
-Rūšiavimas - 192.896s
-
-Išskirstymas - 27.693s
-
-"Vargšiukų" įrašymas - 40.411s 
-
-"Kietiakų" įrašymas - 70.382s
-
-
-Bendras laikas: 392.652s
