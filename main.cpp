@@ -152,7 +152,22 @@ int main (){
                     vargsiukai1.push_back(temp);
                 else
                     kietiakai1.push_back(temp);
-            }         
+            }  
+            
+            cout << "2 strategija\n";
+            vector<Studentas> Grupe2 = Grupe;
+            vector<Studentas> vargsiukai2;
+
+            size_t i = 0;
+            while (i < Grupe2.size()) {
+                float galutinis = (Grupe2[i].rez_vidurkis + Grupe2[i].rez_mediana) / 2.0;
+                if (galutinis < 5.0) {
+                    vargsiukai2.push_back(Grupe2[i]);  
+                    Grupe2.erase(Grupe2.begin() + i);  
+                } else {
+                    ++i;  
+                }
+            }
 
             return 0;
         }
@@ -443,7 +458,20 @@ int main (){
                 else
                     kietiakai1.push_back(temp);
             }         
-
+                    
+            list<Studentas> Grupe2 = Grupe;
+            list<Studentas> vargsiukai2;
+                    
+            for (auto it = Grupe2.begin(); it != Grupe2.end(); ) {
+            float galutinis = (it->rez_vidurkis + it->rez_mediana) / 2.0;
+            if (galutinis < 5.0) {
+                vargsiukai2.push_back(*it);   
+                it = Grupe2.erase(it);          
+            } else {
+                ++it;  
+              }
+            }
+                
             return 0;
         }
     
@@ -614,6 +642,7 @@ int main (){
     }
     return 0;
 }
+
 
 
 
