@@ -43,7 +43,7 @@ int main (){
         cout << "3 - Atsitikinai sugeneruoti ir issaugoti i faila\n";
         cout << "Jei norite atlikti spartos analize, iveskite 4\n";
         cout << "Jei norite atlikti strategiju analize, iveskite 5\n";
-        pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,4);
+        pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,5);
         
     
         double generavimo_laikas = 0.0;
@@ -128,6 +128,33 @@ int main (){
                 return 0;
             }
             cout << "Failas perskaitytas. Jame yra " << Grupe.size() << " irasu."<<endl;
+        }
+        else if (pasirinkimas == 5) {   
+            cout << "STRATEGIJOS ANALIZE NAUDOJANT STD::VECTOR\n";
+            cout << "1 strategija\n";
+
+            string fpav;
+            cout << "Iveskite failo pavadinima, kuri naudosite testavimui: ";
+            cin >> fpav;
+
+            failo_nuskaitymas(fpav, Grupe);
+            if (Grupe.empty()) {
+                cout << "Failas tuscias arba nepavyko atidaryti. Strategijos analizė nutraukta.\n";
+                return 0;
+            }
+
+            vector<Studentas> Grupe1 = Grupe;
+            vector<Studentas> vargsiukai1, kietiakai1;
+
+            for (auto temp : Grupe1) {
+                float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
+                if (galutinis < 5.0)
+                    vargsiukai1.push_back(temp);
+                else
+                    kietiakai1.push_back(temp);
+            }         
+
+            return 0;
         }
     
     cout << "Kaip norite surikiuoti studentus?\n";
@@ -557,6 +584,7 @@ int main (){
     }
     
     }
+
 
 
 
