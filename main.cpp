@@ -131,8 +131,6 @@ int main (){
         }
         else if (pasirinkimas == 5) {   
             cout << "STRATEGIJOS ANALIZE NAUDOJANT STD::VECTOR\n";
-            cout << "1 strategija\n";
-
             string fpav;
             cout << "Iveskite failo pavadinima, kuri naudosite testavimui: ";
             cin >> fpav;
@@ -141,8 +139,13 @@ int main (){
             if (Grupe.empty()) {
                 cout << "Failas tuscias arba nepavyko atidaryti. Strategijos analizė nutraukta.\n";
                 return 0;
-            }
+            }            
+            cout << "Testavimas bus atliktas su failu, kuriame yra" <<Grupe.size() <<"eiluciu.\n";
+            cout << "--1 strategija--\n";
 
+
+            
+            auto start_1 = high_resolution_clock::now();
             vector<Studentas> Grupe1 = Grupe;
             vector<Studentas> vargsiukai1, kietiakai1;
 
@@ -153,8 +156,13 @@ int main (){
                 else
                     kietiakai1.push_back(temp);
             }  
+            auto end_1 = high_resolution_clock::now();
+            strategija1_laikas = duration<double>(end_1 - start_1).count();
+
+            cout << "1 skirstymo strategijos veikimo laikas: " << strategija1_laikas << endl;
             
-            cout << "2 strategija\n";
+            cout << "--2 strategija--\n";
+            auto start_2 = high_resolution_clock::now();
             vector<Studentas> Grupe2 = Grupe;
             vector<Studentas> vargsiukai2;
 
@@ -168,6 +176,10 @@ int main (){
                     ++i;  
                 }
             }
+            auto end_2 = high_resolution_clock::now();
+            startegija2_laikas = duration<double>(end_2 - start_2).count();
+
+            cout << "2 skirstymo strategijos veikimo laikas: " << strategija2_laikas << endl;
 
             return 0;
         }
@@ -434,10 +446,8 @@ int main (){
             cout << "Failas perskaitytas. Jame yra " << Grupe.size() << " irasu."<<endl;
         }
 
-                else if (pasirinkimas == 5) {   
+            else if (pasirinkimas == 5) {   
             cout << "STRATEGIJOS ANALIZE NAUDOJANT STD::LIST\n";
-            cout << "1 strategija\n";
-
             string fpav;
             cout << "Iveskite failo pavadinima, kuri naudosite testavimui: ";
             cin >> fpav;
@@ -446,8 +456,12 @@ int main (){
             if (Grupe.empty()) {
                 cout << "Failas tuscias arba nepavyko atidaryti. Strategijos analizė nutraukta.\n";
                 return 0;
-            }
-
+            }           
+            cout << "Testavimas bus atliktas su failu, kuriame yra" <<Grupe.size() <<"eiluciu.\n";
+                
+            cout << "1 strategija\n";
+                
+            auto start_1 = high_resolution_clock::now();
             list<Studentas> Grupe1 = Grupe;
             list<Studentas> vargsiukai1, kietiakai1;
 
@@ -458,10 +472,15 @@ int main (){
                 else
                     kietiakai1.push_back(temp);
             }         
+            auto end_1 = high_resolution_clock::now();
+            startegija1_laikas = duration<double>(end_1 - start_1).count();
+
+            cout << "1 skirstymo strategijos veikimo laikas: " << strategija1_laikas << endl;
                     
             list<Studentas> Grupe2 = Grupe;
             list<Studentas> vargsiukai2;
-                    
+
+            auto start_2 = high_resolution_clock::now();
             for (auto it = Grupe2.begin(); it != Grupe2.end(); ) {
             float galutinis = (it->rez_vidurkis + it->rez_mediana) / 2.0;
             if (galutinis < 5.0) {
@@ -471,6 +490,10 @@ int main (){
                 ++it;  
               }
             }
+            auto end_2 = high_resolution_clock::now();
+            strategija2_laikas = duration<double>(end_2 - start_2).count();
+
+            cout << "2 skirstymo strategijos veikimo laikas: " << strategija2_laikas << endl;
                 
             return 0;
         }
@@ -642,6 +665,7 @@ int main (){
     }
     return 0;
 }
+
 
 
 
