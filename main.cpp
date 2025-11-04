@@ -42,6 +42,7 @@ int main (){
         cout << "2 - Nuskaityti is failo\n";
         cout << "3 - Atsitikinai sugeneruoti ir issaugoti i faila\n";
         cout << "Jei norite atlikti spartos analize, iveskite 4\n";
+        cout << "Jei norite atlikti strategiju analize, iveskite 5\n";
         pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,4);
         
     
@@ -556,6 +557,7 @@ int main (){
     }
     
     }
+
 
 
 
