@@ -330,7 +330,8 @@ int main (){
         cout << "2 - Nuskaityti is failo\n";
         cout << "3 - Atsitikinai sugeneruoti ir issaugoti i faila\n";
         cout << "Jei norite atlikti spartos analize, iveskite 4\n";
-        pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,4);
+        cout << "Jei norite atlikti strategijos analize, iveskite 5\n";
+        pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1,5);
         
     
         double generavimo_laikas = 0.0;
@@ -417,13 +418,43 @@ int main (){
             }
             cout << "Failas perskaitytas. Jame yra " << Grupe.size() << " irasu."<<endl;
         }
+
+                else if (pasirinkimas == 5) {   
+            cout << "STRATEGIJOS ANALIZE NAUDOJANT STD::LIST\n";
+            cout << "1 strategija\n";
+
+            string fpav;
+            cout << "Iveskite failo pavadinima, kuri naudosite testavimui: ";
+            cin >> fpav;
+
+            failo_nuskaitymas(fpav, Grupe);
+            if (Grupe.empty()) {
+                cout << "Failas tuscias arba nepavyko atidaryti. Strategijos analizė nutraukta.\n";
+                return 0;
+            }
+
+            list<Studentas> Grupe1 = Grupe;
+            list<Studentas> vargsiukai1, kietiakai1;
+
+            for (auto temp : Grupe1) {
+                float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
+                if (galutinis < 5.0)
+                    vargsiukai1.push_back(temp);
+                else
+                    kietiakai1.push_back(temp);
+            }         
+
+            return 0;
+        }
     
     cout << "Kaip norite surikiuoti studentus?\n";
     cout << "1 - Pagal varda\n";
     cout << "2 - Pagal galutini bala\n";
     int rus_pasirinkimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
 
-    cout << "Studento adresas atmintyje: " << &Grupe.back() << endl;
+    for (auto& studentas : Grupe) {
+        cout << "Studento adresas atmintyje: " << &studentas << endl;
+    }
     
     auto start_sort = high_resolution_clock::now();    
     if (rus_pasirinkimas == 1) {
@@ -581,9 +612,9 @@ int main (){
             }
         }
     }
-    }
-    
-    }
+    return 0;
+}
+
 
 
 
