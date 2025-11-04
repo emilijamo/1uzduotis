@@ -52,6 +52,9 @@ int main (){
         double dalijimo_laikas = 0.0;
         double vargsiuku_irasymo_laikas = 0.0;
         double kietiaku_irasymo_laikas = 0.0;
+        double strategija1_laikas = 0.0;
+        double strategija2_laikas = 0.0;
+
         bool matuoti_laika = (pasirinkimas == 4);
         
         int rez_pasirinkimas;
@@ -140,7 +143,10 @@ int main (){
                 cout << "Failas tuscias arba nepavyko atidaryti. Strategijos analizė nutraukta.\n";
                 return 0;
             }            
-            cout << "Testavimas bus atliktas su failu, kuriame yra" <<Grupe.size() <<"eiluciu.\n";
+            cout << "Testavimas bus atliktas su failu, kuriame yra " <<Grupe.size() <<" eiluciu.\n";
+            
+            cout << fixed << setprecision(3);
+
             cout << "--1 strategija--\n";
 
 
@@ -177,7 +183,7 @@ int main (){
                 }
             }
             auto end_2 = high_resolution_clock::now();
-            startegija2_laikas = duration<double>(end_2 - start_2).count();
+            strategija2_laikas = duration<double>(end_2 - start_2).count();
 
             cout << "2 skirstymo strategijos veikimo laikas: " << strategija2_laikas << endl;
 
@@ -367,6 +373,9 @@ int main (){
         double dalijimo_laikas = 0.0;
         double vargsiuku_irasymo_laikas = 0.0;
         double kietiaku_irasymo_laikas = 0.0;
+        double strategija1_laikas = 0.0;
+        double strategija2_laikas = 0.0;
+
         bool matuoti_laika = (pasirinkimas == 4);
         
         int rez_pasirinkimas;
@@ -457,7 +466,8 @@ int main (){
                 cout << "Failas tuscias arba nepavyko atidaryti. Strategijos analizė nutraukta.\n";
                 return 0;
             }           
-            cout << "Testavimas bus atliktas su failu, kuriame yra" <<Grupe.size() <<"eiluciu.\n";
+            cout << "Testavimas bus atliktas su failu, kuriame yra " <<Grupe.size() <<" eiluciu.\n";
+            cout << fixed << setprecision(3);
                 
             cout << "1 strategija\n";
                 
@@ -473,7 +483,7 @@ int main (){
                     kietiakai1.push_back(temp);
             }         
             auto end_1 = high_resolution_clock::now();
-            startegija1_laikas = duration<double>(end_1 - start_1).count();
+            strategija1_laikas = duration<double>(end_1 - start_1).count();
 
             cout << "1 skirstymo strategijos veikimo laikas: " << strategija1_laikas << endl;
                     
@@ -665,6 +675,7 @@ int main (){
     }
     return 0;
 }
+
 
 
 
