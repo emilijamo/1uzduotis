@@ -147,7 +147,7 @@ int main (){
             
             cout << fixed << setprecision(3);
 
-            cout << "--1 strategija--\n";
+            cout << "\n--1 strategija--\n";
 
 
             
@@ -165,13 +165,13 @@ int main (){
             auto end_1 = high_resolution_clock::now();
             strategija1_laikas = duration<double>(end_1 - start_1).count();
 
-            cout << "1 skirstymo strategijos veikimo laikas: " << strategija1_laikas << endl;
+            cout << "1 skirstymo strategijos veikimo laikas: " << strategija1_laikas <<"s" << endl;
             
             size_t atmintis_studentai1 = atminties_naudojimas_vector(Grupe1);
             size_t atmintis_vargsiukai1 = atminties_naudojimas_vector(vargsiukai1);
             size_t atmintis_kietiakai1 = atminties_naudojimas_vector(kietiakai1);
 
-            cout << "\n--- Atminties analize ---\n";
+            cout << "\nAtminties analize\n";
             cout << "Bendras studentai: " << atmintis_studentai1 << " B\n";
             cout << "Vargsiukai: " << atmintis_vargsiukai1 << " B\n";
             cout << "Kietiakai: " << atmintis_kietiakai1 << " B\n";
@@ -179,33 +179,42 @@ int main (){
                  << (atmintis_studentai1 + atmintis_vargsiukai1 + atmintis_kietiakai1)
                  << " B\n";            
             
-            cout << "--2 strategija--\n";
+            cout << "\n--2 strategija--\n";
             auto start_2 = high_resolution_clock::now();
             vector<Studentas> Grupe2 = Grupe;
             vector<Studentas> vargsiukai2;
 
-            size_t i = 0;
-            while (i < Grupe2.size()) {
-                float galutinis = (Grupe2[i].rez_vidurkis + Grupe2[i].rez_mediana) / 2.0;
-                if (galutinis < 5.0) {
-                    vargsiukai2.push_back(Grupe2[i]);  
-                    Grupe2.erase(Grupe2.begin() + i);  
-                } else {
-                    ++i;  
-                }
+            sort(Grupe2.begin(), Grupe2.end(), [](const Studentas &a, const Studentas &b){
+                return a.rez_vidurkis > b.rez_vidurkis;
+            });
+
+            while (true) {
+                Studentas s = Grupe2.back();
+                if (s.rez_vidurkis < 5.0) {
+                    vargsiukai2.push_back(s);
+                    Grupe2.pop_back();
+                } else break;
             }
+            
             auto end_2 = high_resolution_clock::now();
             strategija2_laikas = duration<double>(end_2 - start_2).count();
 
-            cout << "2 skirstymo strategijos veikimo laikas: " << strategija2_laikas << endl;
+            cout << "2 skirstymo strategijos veikimo laikas: " << strategija2_laikas << "s" << endl;
             size_t atmintis_kietiakai2 = atminties_naudojimas_vector(Grupe2);
             size_t atmintis_vargsiukai2 = atminties_naudojimas_vector(vargsiukai2);
 
-            cout << "\n--- Atminties analize ---\n";
+            cout << "\nAtminties analize\n";
             cout << "Vargsiukai: " << atmintis_vargsiukai2 << " B\n";
-            cout << "Kietiakai (atitinkamai studentu vektorius): " << atmintis_kietiakai2 << " B\n";
-            cout << "Viso: "
+            cout << "Kietiakai (atitinkamai studentu vektorius su rezervuota atmintimi): " << atmintis_kietiakai2 << " B\n";
+            Grupe2.shrink_to_fit();
+            size_t atmintis_kietiakai22 = atminties_naudojimas_vector(Grupe2);
+            cout << "Kietiakai (atitinkamai studentu vektorius atlikus vektoriaus sumazinima): " << atmintis_kietiakai22 << " B\n";
+            cout << "Viso (pries vektoriaus sumazinima): "
                  << (atmintis_vargsiukai2 + atmintis_kietiakai2)
+                 << " B\n";
+
+            cout << "Viso (po vektoriaus sumazinimo): "
+                 << (atmintis_vargsiukai2 + atmintis_kietiakai22)
                  << " B\n";
 
             return 0;
@@ -490,7 +499,7 @@ int main (){
             cout << "Testavimas bus atliktas su failu, kuriame yra " <<Grupe.size() <<" eiluciu.\n";
             cout << fixed << setprecision(3);
                 
-            cout << "1 strategija\n";
+            cout << "\n--1 strategija--\n";
                 
             auto start_1 = high_resolution_clock::now();
             list<Studentas> Grupe1 = Grupe;
@@ -506,20 +515,21 @@ int main (){
             auto end_1 = high_resolution_clock::now();
             strategija1_laikas = duration<double>(end_1 - start_1).count();
 
-            cout << "1 skirstymo strategijos veikimo laikas: " << strategija1_laikas << endl;
+            cout << "1 skirstymo strategijos veikimo laikas: " << strategija1_laikas <<"s"<< endl;
                 
             size_t atmintis_studentai1 = atminties_naudojimas_list(Grupe1);
             size_t atmintis_vargsiukai1 = atminties_naudojimas_list(vargsiukai1);
             size_t atmintis_kietiakai1 = atminties_naudojimas_list(kietiakai1);
 
-            cout << "\n--- Atminties analize ---\n";
+            cout << "\nAtminties analize\n";
             cout << "Bendras studentai: " << atmintis_studentai1 << " B\n";
             cout << "Vargsiukai: " << atmintis_vargsiukai1 << " B\n";
             cout << "Kietiakai: " << atmintis_kietiakai1 << " B\n";
             cout << "Viso: "
                  << (atmintis_studentai1 + atmintis_vargsiukai1 + atmintis_kietiakai1)
                  << " B\n";      
-                
+
+            cout << "\n--2 strategija--\n";
             list<Studentas> Grupe2 = Grupe;
             list<Studentas> vargsiukai2;
 
@@ -536,11 +546,11 @@ int main (){
             auto end_2 = high_resolution_clock::now();
             strategija2_laikas = duration<double>(end_2 - start_2).count();
 
-            cout << "2 skirstymo strategijos veikimo laikas: " << strategija2_laikas << endl;
+            cout << "2 skirstymo strategijos veikimo laikas: " << strategija2_laikas << "s" << endl;
             size_t atmintis_kietiakai2 = atminties_naudojimas_list(Grupe2);
             size_t atmintis_vargsiukai2 = atminties_naudojimas_list(vargsiukai2);
 
-            cout << "\n--- Atminties analize ---\n";
+            cout << "\nAtminties analize\n";
             cout << "Vargsiukai: " << atmintis_vargsiukai2 << " B\n";
             cout << "Kietiakai (atitinkamai studentu sarasas): " << atmintis_kietiakai2 << " B\n";
             cout << "Viso: "
@@ -718,17 +728,3 @@ int main (){
     }
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
