@@ -54,6 +54,7 @@ int main (){
         double kietiaku_irasymo_laikas = 0.0;
         double strategija1_laikas = 0.0;
         double strategija2_laikas = 0.0;
+        double strategija3_laikas = 0.0;
 
         bool matuoti_laika = (pasirinkimas == 4);
         
@@ -215,6 +216,39 @@ int main (){
 
             cout << "Viso (po vektoriaus sumazinimo): "
                  << (atmintis_vargsiukai2 + atmintis_kietiakai22)
+                 << " B\n";
+
+            cout << "\n--3 strategija--\n";
+
+            vector<Studentas> Grupe3 = Grupe;
+            vector<Studentas> vargsiukai3;
+            vector<Studentas> kietiakai3;
+
+            auto start_3 = high_resolution_clock::now();
+
+            auto it = std::partition(Grupe3.begin(), Grupe3.end(), [](const Studentas& s){
+                float galutinis = (s.rez_vidurkis + s.rez_mediana)/2.0;
+                return galutinis < 5.0;
+            });
+
+            vargsiukai3.insert(vargsiukai3.end(), Grupe3.begin(), it);
+            kietiakai3.insert(kietiakai3.end(), it, Grupe3.end());
+            auto end_3 = high_resolution_clock::now();
+
+            strategija3_laikas = duration<double>(end_3 - start_3).count();
+
+            cout << "3 skirstymo strategijos veikimo laikas: " << strategija3_laikas <<"s" << endl;
+
+            size_t atmintis_studentai3 = atminties_naudojimas_vector(Grupe3);
+            size_t atmintis_vargsiukai3 = atminties_naudojimas_vector(vargsiukai3);
+            size_t atmintis_kietiakai3 = atminties_naudojimas_vector(kietiakai3);
+
+            cout << "\nAtminties analize\n";
+            cout << "Bendras studentai: " << atmintis_studentai3 << " B\n";
+            cout << "Vargsiukai: " << atmintis_vargsiukai3 << " B\n";
+            cout << "Kietiakai: " << atmintis_kietiakai3 << " B\n";
+            cout << "Viso: "
+                 << (atmintis_studentai3 + atmintis_vargsiukai3 + atmintis_kietiakai3)
                  << " B\n";
 
             return 0;
@@ -405,6 +439,7 @@ int main (){
         double kietiaku_irasymo_laikas = 0.0;
         double strategija1_laikas = 0.0;
         double strategija2_laikas = 0.0;
+        double strategija3_laikas = 0.0;
 
         bool matuoti_laika = (pasirinkimas == 4);
         
@@ -557,6 +592,38 @@ int main (){
                  << (atmintis_vargsiukai2 + atmintis_kietiakai2)
                  << " B\n";
 
+            cout << "\n--3 strategija--\n";
+
+            list<Studentas> Grupe3 = Grupe;
+            list<Studentas> vargsiukai3;
+            list<Studentas> kietiakai3;
+
+            auto start_3 = high_resolution_clock::now();
+
+            auto it = std::stable_partition(Grupe3.begin(), Grupe3.end(), [](const Studentas& s) {
+                float galutinis = (s.rez_vidurkis + s.rez_mediana) / 2.0;
+                return galutinis < 5.0;
+            });
+
+            vargsiukai3.splice(vargsiukai3.end(), Grupe3, Grupe3.begin(), it);
+            kietiakai3.splice(kietiakai3.end(), Grupe3, it, Grupe3.end());
+            auto end_3 = high_resolution_clock::now();
+
+            strategija3_laikas = duration<double>(end_3 - start_3).count();
+
+            cout << "3 skirstymo strategijos veikimo laikas: " << strategija3_laikas <<"s" << endl;
+
+            size_t atmintis_studentai3 = atminties_naudojimas_list(Grupe3);
+            size_t atmintis_vargsiukai3 = atminties_naudojimas_list(vargsiukai3);
+            size_t atmintis_kietiakai3 = atminties_naudojimas_list(kietiakai3);
+
+            cout << "\nAtminties analize\n";
+            cout << "Bendras studentai: " << atmintis_studentai3 << " B\n";
+            cout << "Vargsiukai: " << atmintis_vargsiukai3 << " B\n";
+            cout << "Kietiakai: " << atmintis_kietiakai3 << " B\n";
+            cout << "Viso: "
+                 << (atmintis_studentai3 + atmintis_vargsiukai3 + atmintis_kietiakai3)
+                 << " B\n";
                 
             return 0;
         }
@@ -728,3 +795,4 @@ int main (){
     }
     return 0;
 }
+
