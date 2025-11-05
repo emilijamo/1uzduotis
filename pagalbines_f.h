@@ -4,6 +4,7 @@
 #include <random>
 #include <vector>
 #include <list>
+#include "studentas.h"
 
 using std::string;
 using std::vector;
@@ -25,3 +26,4 @@ private:
     std::uniform_int_distribution<int> dist;
 
 };
+
