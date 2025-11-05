@@ -34,3 +34,12 @@ int skaiciaus_ivedimas(string prasymas, int min, int max) {
         cout << "Neteisinga ivestis. Bandykite dar karta.\n";
     }
 }
+
+size_t atminties_naudojimas_vector(const vector<Studentas>& Grupe) {
+    return Grupe.capacity() * sizeof(Studentas);
+}
+
+size_t atminties_naudojimas_list(const list<Studentas>& Grupe) {
+    return Grupe.size() * (sizeof(Studentas) + 2 * sizeof(void*));
+}
+
