@@ -6,8 +6,38 @@ Namų darbų bei egzamino pažymius galima įvesti pačiam naudotojui, galima pa
 Programa turi funkcionalumą, leidžiantį pasirinkti generuoti atsitiktinius studentų pažymius į failą, taip pat kuriant ir "šabloninius" vardus bei pavardes, t.y. Vardas1 Pavarde1, Vardas2 Pavarde2,...
 
 **Programos rezultatas** 
+
 Įvedant duomenis pažiam naudotojui, rezultatas yra lentelė, kurioje matoma studentų vardai, pavardės ir galutiniai rezultatai.  Taip pat naudotojui suteikiamas pasirinkimas, kaip skaičiuotą rezultatą jis nori matyti galutinėje išvestyje - naudojant medianą, vidurkį ar abiem variantais skaičiuotus rezultatus.
 Duomenis nuskaitant iš failo, naudotojas gali pasirinkti, nori matyti rezultatų lentelę terminale ar nori lentelę įrašyti į naują failą. Rezultatas nuskaitant nuo failo yra lentelė, kurioje pateikiami studentų vardai, pavardės ir galutiniai rezultatai, skaičiuoti tiek su mediana, tiek su vidurkiu. Pasirinkus lentelę įrašyti į failą, naudotojas gali studentus išvesti į du failus, išskirstant juos pagal jų galutinį pažymį. Į "vargšiukų" grupę yra skiriami studentai, kurių galutinis pažymys yra mažesnis už 5, o į "kietiakų" grupę skiriami studentai, kurių pažymys yra lygus arba didesnis už 5 (Verta atkreipti dėmesį, kad skirstant į grupes naudojami abiem būdais skaičiuoti galutiniai balai ir studentas į tam tikrą kategoriją skiriamas pagal jų vidurkį).
+
+# Kiekvienos versijos aprašymas
+
+*V.01*
+
+- Galimas studentų įvedimas žinant ir nežinant pradinio pažymių skaičiaus
+- Apskaičiuojamas studentų galutinis balas pagal pažymių vidurkį bei medianą
+- Studentų duomenis į programą galima įkelti ir nuskaitant iš failo
+- Išvedami rezultatai lentelėje sūrušiuoti
+
+
+*V.02 (patobulinta V.01)*
+
+- Studentai gali būti sūrušiuoti į kategorijas ir rezultatai išvedami į faila
+- Atliktas kodo refactoringas 
+- Pridėtas funkcionalumas - spartos analizė, matuojantis programos funkcionalumų užtrunkamą laiką
+  
+
+*V.03 (patobulinta V.02)*
+
+- Vartotojui leidžiama pasirinkti konteinerį, su kuriuo nori dirbti
+- Atitinkami metodai pritaikyti std::list vektoriui
+- Atlikta spartos analizė abiems konteineriams
+
+
+ *V.10 (patobulinta V.03)* 
+ 
+- Studentų dalijimui pridėtos 2 naujos strategijos ir atlikta jų laiko analizė
+
 
 # Greičio tyrimai
 
