@@ -34,7 +34,7 @@ Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,
 | 10 000 000      | 91.611                          |
 
 
-*Programos veikimo spartos analizė*
+*Programos veikimo spartos analizė su skirtingais konteineriais*
 
 Ši analizė atlikta naudojant pirmojo generavimo metu gautą failą su atitinkamu studentų skaičiumi, t.y. ***1000, 10000,100000,1000000,10000000***. Matuojami buvo 5 programos veiksnumai: nuskaitymas iš failo, duomenų rūšiavimas pagal galutinį pažymį(šiuo atveju kreipiamas dėmesys ir į mediana skaičiuota pažymi, ir į vidurkiu), studentų išskirstymas pagal pažymius į vargšiukus ir kietiakus (skirstymo pagrindas apibrėžtas programos aprašyme), tuomet tų grupių išvedimas į du atskirus failus bei bendras programos veikimo laikas, t.y. visų kitų laikų suma. Analizė buvo atlikta ***3*** kartus, tokiomis pačiomis sąlygomis ir išvestas vidurkis, pateikiamas 3 skaičių po kablelio tikslumu (milisekundėmis): 
 
@@ -170,4 +170,30 @@ Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,
 | „Vargšiukų“ įrašymas | 40.411      |
 | „Kietiakų“ įrašymas  | 70.382      |
 | **Bendras laikas**   | **392.652** |
+
+
+**Skirtingų studentų dalijimo strategijų analizė**
+
+Ši analizė atlikta naudojant pirmojo generavimo metu gautą failą su atitinkamu studentų skaičiumi, t.y. ***1000, 10000,100000,1000000,10000000*** - tokie patys failai, kokie naudoti ir konteinerių palyginimo analizėje. Buvo matuojamas laikas, kurį kiekviena strategija užtrunka rūšiuojant studentus į "Vargšiukų" bei "Kietiakų" grupes. Analizė buvo atlikta ***3*** kartus, tokiomis pačiomis sąlygomis ir išvestas vidurkis, pateikiamas 3 skaičių po kablelio tikslumu (milisekundėmis):
+
+*Testavimas su konteineriu std::vector*
+
+| Duomenų kiekis | 1 str  | 2 str  | 3 str |
+| -------------- | ------ | ------ | ----- |
+| 1,000          | 0.002  | 0.002  | 0.001 |
+| 10,000         | 0.023  | 0.046  | 0.005 |
+| 100,000        | 0.114  | 0.342  | 0.050 |
+| 1,000,000      | 1.196  | 4.093  | 0.495 |
+| 10,000,000     | 14.789 | 63.229 | 7.798 |
+
+
+*Testavimas su konteineriu std::list*
+
+| Duomenų kiekis | 1 str  | 2 str | 3 str |
+| -------------- | ------ | ----- | ----- |
+| 1,000          | 0.002  | 0.000 | 0.001 |
+| 10,000         | 0.017  | 0.004 | 0.010 |
+| 100,000        | 0.227  | 0.042 | 0.063 |
+| 1,000,000      | 1.867  | 0.035 | 0.731 |
+| 10,000,000     | 18.544 | 4.345 | 9.828 |
 
