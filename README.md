@@ -299,13 +299,15 @@ Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,
 
 # Įdiegimo instrukcija
 
-1. Kompiuteryje turėkite įdiegtus cmake interpretatorių bei C++ kompiliatorių. Jei neturite, galite juos įsidiegti čia:
+1. Kompiuteryje turėkite įdiegtus cmake interpretatorių bei C++ kompiliatorių. Jei neturite, galite juos įsidiegti čia: https://cmake.org/download/
+  https://cmake.org/download/
+  https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022
 
-2. Iš šios github repozitorijos, atsisiųskite CMakeFiles.txt, duom_ivedimo_isvedimo_f.h, pagalbines_f.h skaiciavimo_f.h,studentas.h, duom_ivedimo_isvedimo_f.cpp, main.cpp, pagalbines_f.cpp, skaiciavimo_f.cpp failus
+3. Iš šios github repozitorijos, atsisiųskite CMakeFiles.txt, duom_ivedimo_isvedimo_f.h, pagalbines_f.h skaiciavimo_f.h,studentas.h, duom_ivedimo_isvedimo_f.cpp, main.cpp, pagalbines_f.cpp, skaiciavimo_f.cpp failus
 
-3. Susikurkite darbinį aplankalą, kuriame norėsite vykdyti programą. Į šį aplanką įdėkite visus parsisiųstusfailus iš github. Šiame aplankale sukurkite dar du aplankalus: src ir Include (būtinai tokiais pavadinimais). Į src aplanką perkelkite visus .cpp failus (duom_ivedimo_isvedimo_f.cpp, main.cpp, pagalbines_f.cpp, skaiciavimo_f.cpp), o į Include visus .h failus (duom_ivedimo_isvedimo_f.h, pagalbines_f.h skaiciavimo_f.h,studentas.h).
+4. Susikurkite darbinį aplankalą, kuriame norėsite vykdyti programą. Į šį aplanką įdėkite visus parsisiųstusfailus iš github. Šiame aplankale sukurkite dar du aplankalus: src ir Include (būtinai tokiais pavadinimais). Į src aplanką perkelkite visus .cpp failus (duom_ivedimo_isvedimo_f.cpp, main.cpp, pagalbines_f.cpp, skaiciavimo_f.cpp), o į Include visus .h failus (duom_ivedimo_isvedimo_f.h, pagalbines_f.h skaiciavimo_f.h,studentas.h).
 
-4. Tuomet terminalą nueikite iki savo darbinio aplankalo ir tuomet paleiskite šias komandas:
+5. Tuomet terminalą nueikite iki savo darbinio aplankalo ir tuomet paleiskite šias komandas:
    1) cmake CMakeLists.txt
    2) cmake --build .
    3) cd .\Debug\
