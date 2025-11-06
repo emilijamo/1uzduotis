@@ -350,74 +350,9 @@ int main (){
     
             return 0;
         }
+        vector<Studentas> vargsiukai, kietiakai;
+        isvesti_studentus(Grupe, vargsiukai, kietiakai, rez_pasirinkimas);
         
-            cout << "Ar norite rezultatus issaugoti i txt faila?: \n";
-            cout << "1 - taip\n";
-            cout << "2 - ne\n";
-            int issaugoti = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
-            if (issaugoti == 1) {
-                cout << "Ar norite studentus suskirstyti i vargsiukus (iki 5) ir kietiakus (nuo 5)?:\n";
-                cout << "1 - taip\n";
-               cout << "2 - ne\n";
-               int kategorizavimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
-    
-                if (kategorizavimas == 1) {
-                    vector<Studentas> vargsiukai, kietiakai;
-                    
-                    for (auto temp : Grupe) {
-                        float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
-                        if (galutinis < 5.0)
-                            vargsiukai.push_back(temp);
-                        else
-                            kietiakai.push_back(temp);
-                    }
-                 string vargsiuku_failas, kietiaku_failas;
-                cout << "Iveskite vargsiuku failo pavadinima: ";
-                cin >> vargsiuku_failas;
-                cout << "Iveskite kietiaku failo pavadinima: ";
-                cin >> kietiaku_failas;
-        
-                if (!vargsiukai.empty())
-                    rezultatu_isvedimas(vargsiuku_failas, vargsiukai, rez_pasirinkimas);
-                if (!kietiakai.empty())
-                    rezultatu_isvedimas(kietiaku_failas, kietiakai, rez_pasirinkimas);
-        
-                cout << "Studentai suskirstyti i failus: "
-                     << vargsiuku_failas << " (vargsiukai) ir "
-                     << kietiaku_failas << " (kietiakai).\n";
-                } else if (kategorizavimas ==2) {
-                    string failo_pav;
-                    cout << "Iveskite failo pavadinima, i kuri issaugoti rezultatus: ";
-                    cin >> failo_pav;
-                    rezultatu_isvedimas(failo_pav, Grupe, rez_pasirinkimas);
-                }
-        } else {    
-            cout << "--------------------------------------------------\n";
-            cout << left << setw(15) << "Vardas"
-                 << left << setw(15) << "Pavarde";
-                
-            if (rez_pasirinkimas == 1)
-                cout << right << setw(10) << "Galutinis (Vid.)\n";
-            else if (rez_pasirinkimas == 2)
-                cout << right << setw(10) << "Galutinis (Med.)\n";
-            else if (rez_pasirinkimas == 3)
-                cout << right << setw(10) << "Galutinis (Vid.) " 
-                     << right << setw(10) << "Galutinis (Med.)\n";
-            cout << "--------------------------------------------------\n";
-            
-            for (auto temp :Grupe){
-                cout << left << setw(15) << temp.vard
-                     << left << setw(15) << temp.pav;
-                    
-                if (rez_pasirinkimas == 1)
-                    cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis << endl;
-                else if (rez_pasirinkimas == 2)
-                    cout << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
-                else if (rez_pasirinkimas == 3)
-                    cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis
-                         << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
-            }
-        }
     } else {
         list<Studentas> Grupe;
     
@@ -724,75 +659,8 @@ int main (){
     
             return 0;
         }
-        
-            cout << "Ar norite rezultatus issaugoti i txt faila?: \n";
-            cout << "1 - taip\n";
-            cout << "2 - ne\n";
-            int issaugoti = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
-            if (issaugoti == 1) {
-                cout << "Ar norite studentus suskirstyti i vargsiukus (iki 5) ir kietiakus (nuo 5)?:\n";
-                cout << "1 - taip\n";
-               cout << "2 - ne\n";
-               int kategorizavimas = skaiciaus_ivedimas("Jusu pasirinkimas: ", 1, 2);
-    
-                if (kategorizavimas == 1) {
-                    list<Studentas> vargsiukai, kietiakai;
-                    
-                    for (auto temp : Grupe) {
-                        float galutinis = (temp.rez_vidurkis + temp.rez_mediana)/2.0;
-                        if (galutinis < 5.0)
-                            vargsiukai.push_back(temp);
-                        else
-                            kietiakai.push_back(temp);
-                    }
-                 string vargsiuku_failas, kietiaku_failas;
-                cout << "Iveskite vargsiuku failo pavadinima: ";
-                cin >> vargsiuku_failas;
-                cout << "Iveskite kietiaku failo pavadinima: ";
-                cin >> kietiaku_failas;
-        
-                if (!vargsiukai.empty())
-                    rezultatu_isvedimas(vargsiuku_failas, vargsiukai, rez_pasirinkimas);
-                if (!kietiakai.empty())
-                    rezultatu_isvedimas(kietiaku_failas, kietiakai, rez_pasirinkimas);
-        
-                cout << "Studentai suskirstyti i failus: "
-                     << vargsiuku_failas << " (vargsiukai) ir "
-                     << kietiaku_failas << " (kietiakai).\n";
-                } else if (kategorizavimas ==2) {
-                    string failo_pav;
-                    cout << "Iveskite failo pavadinima, i kuri issaugoti rezultatus: ";
-                    cin >> failo_pav;
-                    rezultatu_isvedimas(failo_pav, Grupe, rez_pasirinkimas);
-                }
-        } else {    
-            cout << "--------------------------------------------------\n";
-            cout << left << setw(15) << "Vardas"
-                 << left << setw(15) << "Pavarde";
-                
-            if (rez_pasirinkimas == 1)
-                cout << right << setw(10) << "Galutinis (Vid.)\n";
-            else if (rez_pasirinkimas == 2)
-                cout << right << setw(10) << "Galutinis (Med.)\n";
-            else if (rez_pasirinkimas == 3)
-                cout << right << setw(10) << "Galutinis (Vid.) " 
-                     << right << setw(10) << "Galutinis (Med.)\n";
-            cout << "--------------------------------------------------\n";
-            
-            for (auto temp :Grupe){
-                cout << left << setw(15) << temp.vard
-                     << left << setw(15) << temp.pav;
-                    
-                if (rez_pasirinkimas == 1)
-                    cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis << endl;
-                else if (rez_pasirinkimas == 2)
-                    cout << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
-                else if (rez_pasirinkimas == 3)
-                    cout << right << setw(10) << fixed << setprecision(2) << temp.rez_vidurkis
-                         << right << setw(10) << fixed << setprecision(2) << temp.rez_mediana << endl;
-            }
-        }
+        list<Studentas> vargsiukai, kietiakai;
+        isvesti_studentus(Grupe, vargsiukai,kietiakai,rez_pasirinkimas);
     }
     return 0;
 }
-
