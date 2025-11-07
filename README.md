@@ -319,9 +319,12 @@ Norint įdiegimą atlikti greičiau - pakartokite 1-3 žingsnius ir atsisiųskit
 
 Pasileidus programą, naudotojui leidžiama pasirinkti konteinerį, su kuriuo jis norės vykdyti programą.
 
-Įvedus atitinkamo konteinerio skaičių, naudotojui duodami pasirinkimai, ką gali daryti su programa.
+Įvedus atitinkamo konteinerio skaičių, naudotojui duodami pasirinkimai, ką gali daryti su programa:
 
-Tolimesnis programos veikimas, pasirinkus 1:
+<img width="309" height="125" alt="visi_funkcionalumai" src="https://github.com/user-attachments/assets/0df920ec-e542-4f5f-b8f7-48842272f670" />
+
+
+*Tolimesnis programos veikimas, pasirinkus* ***1***:
 
 Naudotojas įveda, kiek studentų norį įvesti į programą.
 
@@ -339,7 +342,7 @@ Tuomet pasirenkama, kaip rūšiuoti studentus rezultate - pagal vardą ar galuti
 Naudotojas gali pasirinkti, ar nori resultato išvedimo į txt failą, ar ne. Pasirinkus ne, į terminalą išvedama lentelė, kurioje atitinkamai pagal pasirinkimą surūšiuojami studentai ir matomas skaičiuotas galutinis pažymys pagal pasirinktą būdą. Pasirinkus išvedimą į failą, naudotojas gali pasirinkti, ar nori rūšiuoti studentus į vargšiukus ir kietiakus. Jei nori studentai suskirstomi ir atitinkamai išvedami į du failus, kurių pavadinimą įveda naudotojas. Pasirinkus nerūšiuoti studentų, jie išvedami į vieną failą, kurio pavadinimą įveda naudotojas. Faile randama tokia pati lentelė, kuri gaunama ir pasirinkus išvedimą ne į failą.
 
 
-Tolimesnis programos veikimas, pasirinkus 2:
+*Tolimesnis programos veikimas, pasirinkus* ***2***:
 
 Naudotojo paprašoma įvesti failo pavadinimą arba tikslią jo lokaciją kompiuteryje.
 
@@ -348,7 +351,7 @@ Tuomet pasirenkama, kaip rūšiuoti studentus rezultate - pagal vardą ar galuti
 Naudotojas gali pasirinkti, ar nori resultato išvedimo į txt failą, ar ne. Pasirinkus ne, į terminalą išvedama lentelė, kurioje atitinkamai pagal pasirinkimą surūšiuojami studentai ir matomas skaičiuotas galutinis pažymys pagal pasirinktą būdą. Pasirinkus išvedimą į failą, naudotojas gali pasirinkti, ar nori rūšiuoti studentus į vargšiukus ir kietiakus. Jei nori studentai suskirstomi ir atitinkamai išvedami į du failus, kurių pavadinimą įveda naudotojas. Pasirinkus nerūšiuoti studentų, jie išvedami į vieną failą, kurio pavadinimą įveda naudotojas. Faile randama tokia pati lentelė, kuri gaunama ir pasirinkus išvedimą ne į failą.
 
 
-Tolimesnis programos veikimas, pasirinkus 3:
+*Tolimesnis programos veikimas, pasirinkus* ***3***:
 
 Naudotojas įveda failo pavadinimą, į kurį norės išsaugoti sugeneruotus duomenis (pavadinimą būtina įvesti su .txt gale). 
 
@@ -359,7 +362,7 @@ Naudotojas įveda, kiek namų darbų pažymių turės kiekvienas studentas.
 Naudotojui suteikiamas pasirinkimas nuskaityti sugeneruotą failą iš karto. Jei pasirenkama nuskaityti, tai vykdomas 2 funkcionalumas nuo 2 žingsnio. Jei Nenuskaitoma, programa baigiama. Failas randamas darbiniame aplinke.
 
 
-Tolimesnis programos veikimas, pasirinkus 4:
+*Tolimesnis programos veikimas, pasirinkus* ***4***:
 
 Naudotojo paprašoma įvesti failo pavadinimą, su kuriuo vykdys spartos analizę. Jei failas perskaitomas, naudotojas gauna eilutę: "Failas perskaitytas. Jame yra {atitinkamas skaičius} irasu."
 
@@ -382,11 +385,16 @@ Kaip rezultatas yra išmetami duomenys apie tam tikrus programos funkcionalumo v
 {atitinkamas laikas} - studentu kietiaku irasymo i faila laikas."
 
 
-Tolimesnis programos veikimas, pasirinkus 5:
+*Tolimesnis programos veikimas, pasirinkus* ***5***:
 
 Naudotojo paprašoma įvesti failo pavadinimą, su kuriuo vykdys strategijų analizę. Jei failas perskaitomas, naudotojas gauna eilutę: "Testavimas bus atliktas su failu, kuriame yra {atitinkamas skaičius} eiluciu."
 
 Kaip rezultatas yra išmetami duomenys apie realizuotų strategijų veikimo laikus ir užimamą vietą atmintyje.
+
+*Proogramos rezultato lentelės pavyzdys*
+
+<img width="324" height="116" alt="rezultatas_vid_pvz" src="https://github.com/user-attachments/assets/cecf23b4-04ec-4b99-b2c5-e001fd492ed7" />
+
 
 
 
