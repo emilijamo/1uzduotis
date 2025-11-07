@@ -315,5 +315,78 @@ Buvo matuojamas failų kūrimo greitis, kuriant failą su ***1000, 10000,100000,
 
 Norint įdiegimą atlikti greičiau - pakartokite 1-3 žingsnius ir atsisiųskite repozitorijoje esantį run.bat failą. Jį taip pat įsikelkite į darbinį aplanką ir tiesiog paleiskite. Pirmą kartą atlikus įdiegimą programa pasileidžia automatiškai, bet jei norite ją paleisti dar kartą, per terminalą nueikite iki aplanko, kuriame yra .exe failas ir paleiskite jį įvedant terminale .\v1.exe
 
+# Naudojimosi instrukcija
+
+Pasileidus programą, naudotojui leidžiama pasirinkti konteinerį, su kuriuo jis norės vykdyti programą.
+
+Įvedus atitinkamo konteinerio skaičių, naudotojui duodami pasirinkimai, ką gali daryti su programa.
+
+Tolimesnis programos veikimas, pasirinkus 1:
+
+Naudotojas įveda, kiek studentų norį įvesti į programą.
+
+Tuomet atitinkamai įveda studento vardą, pavardę.
+
+Studento pažymius galima įvesti 2 būdais - patiems arba sugeneruojant atsitiktinai:
+
+Pasirinkus įvedimą patiems, naudotojas žinant, kiek pažymių turi studentas, gali įvesti tą skaičių į programą ir tuomet ji leis įvesti tik atitinkamą skaičių pažymių. Naudotojas, nežinant kiek studentas turi pažymių, gali įvesti 'neaisku' ir tuomet vesti pažymius iki kol jie baigias ir įvedimą užbaigti įvedus 'baigti'. Abejais atvejais įvedus visus pažymius, paprašoma įvesti egzamino pažymį.
+Pasirinkus atsitiktinį generavimą, naudotojo paklausiama, kiek pažymių nori generuoti. Tuomet atitinkamai išmetamas tas skaičius pažymių ir taip pat sugeneruotas studento pažymys.
+
+Baigus pažymių įvedimą, naudotojas gali pasirinkti, kokiu būdu skaičiuoti galutinį pažymį - medianą, vidurkį ar abu.
+
+Tuomet pasirenkama, kaip rūšiuoti studentus rezultate - pagal vardą ar galutinį pažymį. Po šio įvedimo išmetamos nuorodos į studento vietą atmintyje.
+
+Naudotojas gali pasirinkti, ar nori resultato išvedimo į txt failą, ar ne. Pasirinkus ne, į terminalą išvedama lentelė, kurioje atitinkamai pagal pasirinkimą surūšiuojami studentai ir matomas skaičiuotas galutinis pažymys pagal pasirinktą būdą. Pasirinkus išvedimą į failą, naudotojas gali pasirinkti, ar nori rūšiuoti studentus į vargšiukus ir kietiakus. Jei nori studentai suskirstomi ir atitinkamai išvedami į du failus, kurių pavadinimą įveda naudotojas. Pasirinkus nerūšiuoti studentų, jie išvedami į vieną failą, kurio pavadinimą įveda naudotojas. Faile randama tokia pati lentelė, kuri gaunama ir pasirinkus išvedimą ne į failą.
+
+
+Tolimesnis programos veikimas, pasirinkus 2:
+
+Naudotojo paprašoma įvesti failo pavadinimą arba tikslią jo lokaciją kompiuteryje.
+
+Tuomet pasirenkama, kaip rūšiuoti studentus rezultate - pagal vardą ar galutinį pažymį. Po šio įvedimo išmetamos nuorodos į studento vietą atmintyje.
+
+Naudotojas gali pasirinkti, ar nori resultato išvedimo į txt failą, ar ne. Pasirinkus ne, į terminalą išvedama lentelė, kurioje atitinkamai pagal pasirinkimą surūšiuojami studentai ir matomas skaičiuotas galutinis pažymys pagal pasirinktą būdą. Pasirinkus išvedimą į failą, naudotojas gali pasirinkti, ar nori rūšiuoti studentus į vargšiukus ir kietiakus. Jei nori studentai suskirstomi ir atitinkamai išvedami į du failus, kurių pavadinimą įveda naudotojas. Pasirinkus nerūšiuoti studentų, jie išvedami į vieną failą, kurio pavadinimą įveda naudotojas. Faile randama tokia pati lentelė, kuri gaunama ir pasirinkus išvedimą ne į failą.
+
+
+Tolimesnis programos veikimas, pasirinkus 3:
+
+Naudotojas įveda failo pavadinimą, į kurį norės išsaugoti sugeneruotus duomenis (pavadinimą būtina įvesti su .txt gale). 
+
+Naudotojas įveda, kiek studentų norės sugeneruotame faile.
+
+Naudotojas įveda, kiek namų darbų pažymių turės kiekvienas studentas.
+
+Naudotojui suteikiamas pasirinkimas nuskaityti sugeneruotą failą iš karto. Jei pasirenkama nuskaityti, tai vykdomas 2 funkcionalumas nuo 2 žingsnio. Jei Nenuskaitoma, programa baigiama. Failas randamas darbiniame aplinke.
+
+
+Tolimesnis programos veikimas, pasirinkus 4:
+
+Naudotojo paprašoma įvesti failo pavadinimą, su kuriuo vykdys spartos analizę. Jei failas perskaitomas, naudotojas gauna eilutę: "Failas perskaitytas. Jame yra {atitinkamas skaičius} irasu."
+
+Naudotojo paklausiama, kaip nori rūšiuoti studentus. 
+
+Automatiškai yra suskirstoma į vargšiukus bei kietiakus. 
+
+Kaip rezultatas yra išmetami duomenys apie tam tikrus programos funkcionalumo veikimo laikus:
+
+"Bendri testavimo rezultatai, kai faile yra {atitinkamas skaičius} duomenu :
+
+{atitinkamas laikas} - studentu duomenu nuskaitymas is tekstinio failo.
+
+{atitinkamas laikas} - studentu rusiavimo pagal galutini rezultata laikas.
+
+{atitinkamas laikas} - studentu dalijimo i vargsiukus ir kietiakus laikas.
+
+{atitinkamas laikas} - studentu vargsiuku irasymo i faila laikas.
+
+{atitinkamas laikas} - studentu kietiaku irasymo i faila laikas."
+
+
+Tolimesnis programos veikimas, pasirinkus 5:
+
+Naudotojo paprašoma įvesti failo pavadinimą, su kuriuo vykdys strategijų analizę. Jei failas perskaitomas, naudotojas gauna eilutę: "Testavimas bus atliktas su failu, kuriame yra {atitinkamas skaičius} eiluciu."
+
+Kaip rezultatas yra išmetami duomenys apie realizuotų strategijų veikimo laikus ir užimamą vietą atmintyje.
+
 
 
